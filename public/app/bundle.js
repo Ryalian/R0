@@ -101,6 +101,11 @@
 	                            'h1',
 	                            null,
 	                            'Hello World!'
+	                        ),
+	                        _react2.default.createElement(
+	                            'p',
+	                            null,
+	                            'Finally get something setup!'
 	                        )
 	                    )
 	                )
@@ -22034,7 +22039,7 @@
 	
 	
 	// module
-	exports.push([module.id, ".container {\n  color: pink;\n}\n", ""]);
+	exports.push([module.id, ".container {\n  color: #666;\n}\n", ""]);
 	
 	// exports
 
