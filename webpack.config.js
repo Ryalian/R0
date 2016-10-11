@@ -14,6 +14,10 @@ var config = {
         filename: "bundle.js",
         publicPath: "/app/"
     },
+    resolve: {
+        modulesDirectories: ['node_modules', './app/component'],
+        extensions: ['', '.js', '.jsx']
+    },
     module: {
         loaders: [
             // ES6 & up
