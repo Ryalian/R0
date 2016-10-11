@@ -47,8 +47,8 @@
   \******************/
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(/*! /Users/ryanchan/Projects/projectR0/appSrc/app/index.js */1);
-	module.exports = __webpack_require__(/*! /Users/ryanchan/Projects/projectR0/appSrc/style/main.less */173);
+	__webpack_require__(/*! /root/app/R0/appSrc/app/index.js */1);
+	module.exports = __webpack_require__(/*! /root/app/R0/appSrc/style/main.less */173);
 
 
 /***/ },
