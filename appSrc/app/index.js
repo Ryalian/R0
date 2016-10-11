@@ -1,17 +1,29 @@
 import React from 'react';
 import { render } from 'react-dom';
+import axios from 'axios';
+
+import Header from 'Header';
+import Stuff from 'Stuff';
 
 class App extends React.Component {
+    constructor() {
+        super();
+
+        this.state = {}
+    }
+    componentWillMount() {
+        axios.get("/getSomething").then(({data}) => {
+            console.log(data)
+            this.setState({data: data.abc}) 
+        });
+    }
 
     render() {
         return (
             <div className="container">
-                <div className="row">
-                    <div className="col-xs-10 col-xs-offset-1">
-                        <h1>Hello World!</h1>
-                        <p>Finally get something setup!</p>
-                    </div>
-                </div>
+                <Header />
+                {this.state.data}
+                <Stuff name="123"/>
             </div>
         );
     }
