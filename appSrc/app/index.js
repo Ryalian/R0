@@ -2,8 +2,10 @@ import React from 'react';
 import { render } from 'react-dom';
 import axios from 'axios';
 
-import Header from 'Header';
-import Stuff from 'Stuff';
+import CoreEngine from 'dashboard/Type01';
+import StateEngine from 'dashboard/StateEngine';
+import ActionEngine from 'dashboard/ActionEngine';
+import DiracSea from 'DiracSea';
 
 class App extends React.Component {
     constructor() {
@@ -21,9 +23,10 @@ class App extends React.Component {
     render() {
         return (
             <div className="container">
-                <Header />
-                {this.state.data}
-                <Stuff name="123"/>
+                <CoreEngine />
+                <StateEngine />
+                <ActionEngine />
+                <DiracSea data={this.state.data} />
             </div>
         );
     }
