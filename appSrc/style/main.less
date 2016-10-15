@@ -1,6 +1,21 @@
+@import "core/core";
+@import "core/actionEngine";
+@import "core/stateEngine";
+@import "diracSea";
+
+body {
+    margin: 0;
+}
+
 .container {
-    color: #666;
-    h1 {
-        color: #333;
+    width: 100vw;
+    height: 100vh;
+
+    .core-engine, .state-engine, .action-engine, .dirac-sea {
+        display: inline-block;
+
+        &:hover {
+            opacity: 0.8;
+        }
     }
 }

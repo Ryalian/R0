@@ -12,6 +12,6 @@ app.get('/getSomething', (req, res) => {
     res.send({abc: "oops"});
 })
 
-app.listen(80, function () {
+app.listen(80, () => {
   console.log('Example app listening on port 80!');
 });

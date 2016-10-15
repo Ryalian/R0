@@ -4,7 +4,7 @@ export default class CoreEngine extends React.Component {
     constructor() {
         super();
         console.log("Core Engine loaded")
-    }    
+    }
     
     componentWillMount() {
     }
