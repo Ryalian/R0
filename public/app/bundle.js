@@ -48,7 +48,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	__webpack_require__(/*! /Users/ryanchan/Projects/projectR0/appSrc/app/index.js */1);
-	module.exports = __webpack_require__(/*! /Users/ryanchan/Projects/projectR0/appSrc/style/main.less */198);
+	module.exports = __webpack_require__(/*! /Users/ryanchan/Projects/projectR0/appSrc/style/main.less */199);
 
 
 /***/ },
@@ -76,15 +76,15 @@
 	
 	var _Type2 = _interopRequireDefault(_Type);
 	
-	var _StateEngine = __webpack_require__(/*! dashboard/StateEngine */ 202);
+	var _StateEngine = __webpack_require__(/*! dashboard/StateEngine */ 196);
 	
 	var _StateEngine2 = _interopRequireDefault(_StateEngine);
 	
-	var _ActionEngine = __webpack_require__(/*! dashboard/ActionEngine */ 203);
+	var _ActionEngine = __webpack_require__(/*! dashboard/ActionEngine */ 197);
 	
 	var _ActionEngine2 = _interopRequireDefault(_ActionEngine);
 	
-	var _DiracSea = __webpack_require__(/*! DiracSea */ 204);
+	var _DiracSea = __webpack_require__(/*! DiracSea */ 198);
 	
 	var _DiracSea2 = _interopRequireDefault(_DiracSea);
 	
@@ -23488,9 +23488,182 @@
 	exports.default = CoreEngine;
 
 /***/ },
-/* 196 */,
-/* 197 */,
+/* 196 */
+/*!********************************************************!*\
+  !*** ./appSrc/app/component/dashboard/StateEngine.jsx ***!
+  \********************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 2);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var StateEngine = function (_React$Component) {
+	    _inherits(StateEngine, _React$Component);
+	
+	    function StateEngine() {
+	        _classCallCheck(this, StateEngine);
+	
+	        var _this = _possibleConstructorReturn(this, (StateEngine.__proto__ || Object.getPrototypeOf(StateEngine)).call(this));
+	
+	        console.log("State Engine loaded");
+	        return _this;
+	    }
+	
+	    _createClass(StateEngine, [{
+	        key: "componentWillMount",
+	        value: function componentWillMount() {}
+	    }, {
+	        key: "render",
+	        value: function render() {
+	            return _react2.default.createElement(
+	                "div",
+	                { className: "type-01 state-engine" },
+	                "State Engine"
+	            );
+	        }
+	    }]);
+	
+	    return StateEngine;
+	}(_react2.default.Component);
+	
+	exports.default = StateEngine;
+
+/***/ },
+/* 197 */
+/*!*********************************************************!*\
+  !*** ./appSrc/app/component/dashboard/ActionEngine.jsx ***!
+  \*********************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 2);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var ActionEngine = function (_React$Component) {
+	    _inherits(ActionEngine, _React$Component);
+	
+	    function ActionEngine() {
+	        _classCallCheck(this, ActionEngine);
+	
+	        var _this = _possibleConstructorReturn(this, (ActionEngine.__proto__ || Object.getPrototypeOf(ActionEngine)).call(this));
+	
+	        console.log("Action Engine loaded");
+	        return _this;
+	    }
+	
+	    _createClass(ActionEngine, [{
+	        key: "componentWillMount",
+	        value: function componentWillMount() {}
+	    }, {
+	        key: "render",
+	        value: function render() {
+	            return _react2.default.createElement(
+	                "div",
+	                { className: "type-01 action-engine" },
+	                "Action Engine"
+	            );
+	        }
+	    }]);
+	
+	    return ActionEngine;
+	}(_react2.default.Component);
+	
+	exports.default = ActionEngine;
+
+/***/ },
 /* 198 */
+/*!*******************************************!*\
+  !*** ./appSrc/app/component/DiracSea.jsx ***!
+  \*******************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 2);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var DiracSea = function (_React$Component) {
+	    _inherits(DiracSea, _React$Component);
+	
+	    function DiracSea() {
+	        _classCallCheck(this, DiracSea);
+	
+	        var _this = _possibleConstructorReturn(this, (DiracSea.__proto__ || Object.getPrototypeOf(DiracSea)).call(this));
+	
+	        console.log("DiracSea Engine loaded");
+	        return _this;
+	    }
+	
+	    _createClass(DiracSea, [{
+	        key: "componentWillMount",
+	        value: function componentWillMount() {}
+	    }, {
+	        key: "render",
+	        value: function render() {
+	            return _react2.default.createElement(
+	                "div",
+	                { className: "type-01 dirac-sea" },
+	                "DiracSea Engine ",
+	                this.props.data
+	            );
+	        }
+	    }]);
+	
+	    return DiracSea;
+	}(_react2.default.Component);
+	
+	exports.default = DiracSea;
+
+/***/ },
+/* 199 */
 /*!********************************!*\
   !*** ./appSrc/style/main.less ***!
   \********************************/
@@ -23499,10 +23672,10 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../~/css-loader!./../../~/autoprefixer-loader!./../../~/less-loader!./main.less */ 199);
+	var content = __webpack_require__(/*! !./../../~/css-loader!./../../~/autoprefixer-loader!./../../~/less-loader!./main.less */ 200);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 201)(content, {});
+	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 202)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -23519,13 +23692,13 @@
 	}
 
 /***/ },
-/* 199 */
+/* 200 */
 /*!***************************************************************************************!*\
   !*** ./~/css-loader!./~/autoprefixer-loader!./~/less-loader!./appSrc/style/main.less ***!
   \***************************************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 200)();
+	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 201)();
 	// imports
 	
 	
@@ -23536,7 +23709,7 @@
 
 
 /***/ },
-/* 200 */
+/* 201 */
 /*!**************************************!*\
   !*** ./~/css-loader/lib/css-base.js ***!
   \**************************************/
@@ -23595,7 +23768,7 @@
 
 
 /***/ },
-/* 201 */
+/* 202 */
 /*!*************************************!*\
   !*** ./~/style-loader/addStyles.js ***!
   \*************************************/
@@ -23848,181 +24021,6 @@
 			URL.revokeObjectURL(oldSrc);
 	}
 
-
-/***/ },
-/* 202 */
-/*!********************************************************!*\
-  !*** ./appSrc/app/component/dashboard/StateEngine.jsx ***!
-  \********************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 2);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var StateEngine = function (_React$Component) {
-	    _inherits(StateEngine, _React$Component);
-	
-	    function StateEngine() {
-	        _classCallCheck(this, StateEngine);
-	
-	        var _this = _possibleConstructorReturn(this, (StateEngine.__proto__ || Object.getPrototypeOf(StateEngine)).call(this));
-	
-	        console.log("State Engine loaded");
-	        return _this;
-	    }
-	
-	    _createClass(StateEngine, [{
-	        key: "componentWillMount",
-	        value: function componentWillMount() {}
-	    }, {
-	        key: "render",
-	        value: function render() {
-	            return _react2.default.createElement(
-	                "div",
-	                { className: "type-01 state-engine" },
-	                "State Engine"
-	            );
-	        }
-	    }]);
-	
-	    return StateEngine;
-	}(_react2.default.Component);
-	
-	exports.default = StateEngine;
-
-/***/ },
-/* 203 */
-/*!*********************************************************!*\
-  !*** ./appSrc/app/component/dashboard/ActionEngine.jsx ***!
-  \*********************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 2);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var ActionEngine = function (_React$Component) {
-	    _inherits(ActionEngine, _React$Component);
-	
-	    function ActionEngine() {
-	        _classCallCheck(this, ActionEngine);
-	
-	        var _this = _possibleConstructorReturn(this, (ActionEngine.__proto__ || Object.getPrototypeOf(ActionEngine)).call(this));
-	
-	        console.log("Action Engine loaded");
-	        return _this;
-	    }
-	
-	    _createClass(ActionEngine, [{
-	        key: "componentWillMount",
-	        value: function componentWillMount() {}
-	    }, {
-	        key: "render",
-	        value: function render() {
-	            return _react2.default.createElement(
-	                "div",
-	                { className: "type-01 action-engine" },
-	                "Action Engine"
-	            );
-	        }
-	    }]);
-	
-	    return ActionEngine;
-	}(_react2.default.Component);
-	
-	exports.default = ActionEngine;
-
-/***/ },
-/* 204 */
-/*!*******************************************!*\
-  !*** ./appSrc/app/component/DiracSea.jsx ***!
-  \*******************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 2);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var DiracSea = function (_React$Component) {
-	    _inherits(DiracSea, _React$Component);
-	
-	    function DiracSea() {
-	        _classCallCheck(this, DiracSea);
-	
-	        var _this = _possibleConstructorReturn(this, (DiracSea.__proto__ || Object.getPrototypeOf(DiracSea)).call(this));
-	
-	        console.log("DiracSea Engine loaded");
-	        return _this;
-	    }
-	
-	    _createClass(DiracSea, [{
-	        key: "componentWillMount",
-	        value: function componentWillMount() {}
-	    }, {
-	        key: "render",
-	        value: function render() {
-	            return _react2.default.createElement(
-	                "div",
-	                { className: "type-01 dirac-sea" },
-	                "DiracSea Engine ",
-	                this.props.data
-	            );
-	        }
-	    }]);
-	
-	    return DiracSea;
-	}(_react2.default.Component);
-	
-	exports.default = DiracSea;
 
 /***/ }
 /******/ ]);
