@@ -15,7 +15,6 @@ class App extends React.Component {
     }
     componentWillMount() {
         axios.get("/getSomething").then(({data}) => {
-            console.log(data)
             this.setState({data: data.abc}) 
         });
     }
