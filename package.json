@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "watch": "cp -R appSrc/images public/images && cp appSrc/index.html public/index.html && webpack -d",
-    "prod": "NODE_ENV=production cp appSrc/index.html public/index.html && webpack -p"
+    "prod": "NODE_ENV=production cp -R appSrc/images public/images && cp appSrc/index.html public/index.html && webpack -p"
   },
   "author": "",
   "license": "ISC",
