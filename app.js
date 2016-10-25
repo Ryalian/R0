@@ -9,7 +9,7 @@ app.get('/', function (req, res) {
 });
 
 app.get('/getS2Engines', (req, res) => {
-  let s2Engines = {
+  var s2Engines = {
     S2Kikan: [
       {
         actions: ['Sort'],
