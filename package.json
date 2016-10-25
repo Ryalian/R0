@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "watch": "cp appSrc/index.html public/index.html && webpack -d",
+    "watch": "cp -R appSrc/images public/images && cp appSrc/index.html public/index.html && webpack -d",
     "prod": "NODE_ENV=production cp appSrc/index.html public/index.html && webpack -p"
   },
   "author": "",
