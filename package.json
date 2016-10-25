@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "watch": "webpack -d && cp appSrc/index.html public/index.html"
+    "watch": "webpack -d && cp appSrc/index.html public/index.html",
+    "prod": "webpack -p && cp appSrc/index.html public/index.html"
   },
   "author": "",
   "license": "ISC",

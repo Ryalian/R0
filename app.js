@@ -8,8 +8,18 @@ app.get('/', function (req, res) {
   res.send('Hello World!');
 });
 
-app.get('/getSomething', (req, res) => {
-    res.send({abc: "oops"});
+app.get('/getS2Engines', (req, res) => {
+  let s2Engines = {
+    S2Kikan: [
+      {
+        actions: ['Sort'],
+        state: ["A", "B", "C"],
+        items: ['JS', 'HTML', 'C++']
+      }
+    ],
+    version: "Type01"
+  }
+  res.send(s2Engines);
 })
 
 app.listen(80, () => {
