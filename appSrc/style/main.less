@@ -10,13 +10,22 @@ body {
 .container {
     width: 100vw;
     height: 100vh;
+    min-height: 600px;
 
     .core-engine, .state-engine, .action-engine, .dirac-sea {
-        display: inline-block;
         float: left;
+        padding: 15px;
+        display: inline-block;
+        box-sizing: border-box;
+    }
+}
 
-        &:hover {
-            opacity: 0.8;
-        }
+*:focus {
+    outline: none;
+}
+
+button {
+    &:hover {
+        cursor: pointer;
     }
 }

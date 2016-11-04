@@ -1,5 +1,23 @@
 .state-engine {
-    width: 85%;
-    height: 15%;
-    background-color: #96eaff;
+    width: 90%;
+    height: 10%;
+    min-height: 85px;
+
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
+
+    .monument {
+        display: inline-block;
+
+        button {
+            width: 100px;
+            height: 50px;
+            border: none;
+            margin: 0 10px ;
+
+            &:active {
+                opacity: 0.8;
+            }
+        }
+    }
 }

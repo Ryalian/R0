@@ -13,7 +13,7 @@ export default class CoreEngine extends React.Component {
     render() {
         return (
             <div className="type-01 core-engine">
-                Type 01
+                :(
             </div>
         )
     }

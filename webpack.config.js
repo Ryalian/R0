@@ -15,7 +15,7 @@ var config = {
         publicPath: "/app/"
     },
     resolve: {
-        modulesDirectories: ['node_modules', './app/component'],
+        modulesDirectories: ['node_modules', './app'],
         extensions: ['', '.js', '.jsx']
     },
     module: {

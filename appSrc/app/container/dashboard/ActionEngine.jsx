@@ -14,7 +14,15 @@ export default class ActionEngine extends React.Component {
     renderActionList() {
         return (
             this.props.actions.map(
-                (action) => <button key={'action_' + action}>{action}</button>
+                (action) => {
+                    return (
+                        <div key={'action_' + action} className="rail-coin" >
+                            <button className="rail-trigger">
+                                {action}
+                            </button>
+                        </div>
+                    )
+                }
             )
         );
     }
@@ -22,7 +30,6 @@ export default class ActionEngine extends React.Component {
     render() {
         return (
             <div className="type-01 action-engine">
-                Action Engine
                 {this.renderActionList()}
             </div>
         )
