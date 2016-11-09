@@ -14,7 +14,8 @@ app.get('/getS2Engines', (req, res) => {
       {
         actions: ['Sort1', 'Sort2', 'Sort3', 'Sort4'],
         state: ["A", "B", "C"],
-        items: ['JS', 'HTML', 'C++']
+        items: ['JS', 'HTML', 'C++'],
+        appName: 'Resume'
       }
     ],
     version: "Type01"
@@ -22,6 +23,6 @@ app.get('/getS2Engines', (req, res) => {
   res.send(s2Engines);
 })
 
-app.listen(80, () => {
+app.listen(8080, () => {
   console.log('Example app listening on port 80!');
 });

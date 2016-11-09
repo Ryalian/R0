@@ -1,4 +1,5 @@
 import React from 'react';
+import ItemCard from '../components/ItemCard';
 
 export default class DiracSea extends React.Component {
     constructor() {
@@ -14,7 +15,7 @@ export default class DiracSea extends React.Component {
     renderItems() {
         return (
             this.props.items.map((item) => {
-                return <div key={'item_' + item}>{item}</div>
+                return <ItemCard core={item} key={item}/>
             })
         );
     }
@@ -22,7 +23,6 @@ export default class DiracSea extends React.Component {
     render() {
         return (
             <div className="type-01 dirac-sea">
-                DiracSea Engine
                 {this.renderItems()}
             </div>
         )

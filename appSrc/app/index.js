@@ -20,13 +20,11 @@ class App extends React.Component {
             state: [],
             items: []
         }
-
-        console.log(this.state.core);
     }
     componentDidMount() {
         axios.get("/getS2Engines").then(({data}) => {
             let S2List = data.S2Kikan;
-            console.log(data.S2Kikan);
+            
             // load data onto machine
             this.setState(S2List[0]); 
         });
