@@ -10,6 +10,7 @@ R0 will be the version below 1.0:
   - v0.5 Big version change for first app - My Resume!
 ### v0.5 *My Resume App*
 > v0.5 Will be a examination of if everything about this framework can be chained together
+
   - v0.5.0 Create data model for experience (Backend)
   - v0.5.1 Display item in dirac sea (Frontend API call)
   - v0.5.2 Basic layout for dirac sea items
@@ -38,6 +39,7 @@ After v0.7 R0 is complete! Not so fast...
 > Yes, I am gonna make the 1000000001th TODO List App. 
 > It's the last one in this planet I promise. 
 > Well, hopefully.
+
 ### TODO List candidates (Order undecided yet)
   - Add & remove item (1st thing of course) -Must have
   - Event information(time, location blah, blah) -Must have
@@ -48,6 +50,7 @@ After v0.7 R0 is complete! Not so fast...
   
 ### v2.0.0 *Voting App*
 > Hopefully I can get this far. I will close the github to private since it's containing account system now.
+
   - v2.0 Topic List (hardcoded)
   - v2.1 Topic Creation page
   - v2.2 Text only topic voting interface
