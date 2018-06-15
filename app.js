@@ -1,7 +1,9 @@
-var express = require('express');
-var app = express();
+const express = require('express');
+const app = express();
+var favicon = require('serve-favicon');
 
-app.use('/', express.static(__dirname + '/public'));
+app.use(favicon(__dirname + '/public/images/star.png'));
+app.use('/', express.static('public'));
 
 
 app.get('/', function (req, res) {
