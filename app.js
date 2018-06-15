@@ -23,6 +23,8 @@ app.get('/getS2Engines', (req, res) => {
   res.send(s2Engines);
 })
 
-app.listen(8080, () => {
-  console.log('Example app listening on port 80!');
+
+let port = 8080
+app.listen(port, () => {
+  console.log('Example app listening on port ' + port + '!');
 });
