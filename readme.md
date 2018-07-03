@@ -6,9 +6,9 @@ R0 will be the version below 1.0:
   - v0.1 Set up basic React, webpack and express - Done
   - v0.2 Set up basic wireframe of state, action, engine and dirac sea(item pool, aka DS). See detail below - Done
   - v0.3 Set up Nginx proxy - Done
-  - v0.4 Write agenda of the project - working
-  - v0.5 Big version change for first app - My Resume!
-### v0.5 *My Resume App*
+  - v0.4 Write agenda of the project - Done
+  - v0.5 Big version change for first app - Calendar!
+### v0.5 *My Calendar App*
 > v0.5 Will be a examination of if everything about this framework can be chained together
 
   - v0.5.0 Create data model for experience (Backend)
@@ -26,14 +26,11 @@ R0 will be the version below 1.0:
   - v0.7 Basic function of core Engine(SOUL!)
 
 ### v0.7 is *critical* but also *unknown*
-Ideally core engine is the soul of this platform, but consider to the fact that my resume is pretty weak functionality it may be too few of features to implement. There are several candidate I can think of:
-  - Trigger home manu as awaken Core Engine action (switch app, About me, etc.)
-  - Trigger Core Engine State(global search, current app status?)
-  - Random crap info
+Original plan is scrapped, need to rethink
  
 After v0.7 R0 is complete! Not so fast...
 
-  - v0.9 Test cases(Very important, isn't it)
+  - v0.9 Test cases, unit test
 
 # v1.0.0 -  *1000000001th TODO List* Engine R1
 > Yes, I am gonna make the 1000000001th TODO List App. 
@@ -47,9 +44,9 @@ After v0.7 R0 is complete! Not so fast...
   - Calendar(Absolutely the last thing to work on, I may put it on v10.10.10) -Optional
   - Account login, share the app with others :) -Must have :3
   
-  
+  <!-- below is not decided yet just some thought -->
 ### v2.0.0 *Voting App*
-> Hopefully I can get this far. I will close the github to private since it's containing account system now.
+> Hopefully I can get this far. I will close the github to private since it's containing account system in this stage.
 
   - v2.0 Topic List (hardcoded)
   - v2.1 Topic Creation page
