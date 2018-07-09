@@ -1,4 +1,5 @@
 import React from 'react';
+import HeaderDay from './CalendarHeaderDay';
 
 export default class CalendarHeader extends React.Component {
     constructor() {
@@ -15,10 +16,14 @@ export default class CalendarHeader extends React.Component {
         ]
     }
 
+    renderDays(days) {
+        return days.map((day) => (<HeaderDay key={day} day={day}/>));
+    }
+
     render() {
         return (
             <div>
-                {this.DaysOfWeek.map((day) => (<span key={day}>{day}</span>))}
+                {this.renderDays(this.DaysOfWeek)}
             </div>
         )
     }

@@ -1,5 +1,5 @@
 import React from 'react';
-import Calendar from '../components/calendar/Calendar';
+import Calendar from './calendar/Calendar';
 
 export default class DiracSea extends React.Component {
     constructor() {

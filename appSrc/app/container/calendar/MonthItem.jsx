@@ -5,9 +5,7 @@ import { startOfMonth, lastDayOfMonth, addDays, getDate, getDay, getMonth, getYe
 
 const styles = {
     "position": "relative",
-    "display": "inline-block",
-    "width": "300px",
-    "height": "300px"
+    "display": "inline-block"
 }
 
 export default class MonthItem extends React.Component {
@@ -42,12 +40,17 @@ export default class MonthItem extends React.Component {
         let offsets = getDay(startDayOfMonth);
 
         return days.map((day, index) => {
-                let dateOfMonth = getDate(day),
-                dayOffset = {
-                    x: (dateOfMonth + offsets - 1) % 7,
-                    y: ((dateOfMonth + offsets - 1) / 7) >> 0
+                let dateOfMonth = getDate(day);
+
+                let props = {
+                    dayOffset: {
+                        x: (dateOfMonth + offsets - 1) % 7,
+                        y: ((dateOfMonth + offsets - 1) / 7) >> 0
+                    },
+                    date: day,
+                    dateOfMonth
                 }
-                return (<DayItem some={dateOfMonth} offset={dayOffset} key={index}/>)
+                return (<DayItem {...props} key={index}/>)
             }
         )
     }
@@ -62,10 +65,10 @@ export default class MonthItem extends React.Component {
 
     render() {
         return (
-            <div style={styles}>
+            <div style={styles} className="calendar-month">
                 {this.renderMonth()}
                 <CalendarHeader />
-                {this.renderDays()}
+                <div className="calendar-body">{this.renderDays()}</div>
             </div>
         )
     }
