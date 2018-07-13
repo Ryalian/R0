@@ -9,11 +9,11 @@ export default class MonthContainer extends React.Component {
     render() {
         return (
             <CalendarContext.Consumer>
-                {(months) => {
+                {(calendar) => {
                     return (
                         <div>
-                            <MonthItem month={months.monthOne}/>
-                            <MonthItem month={months.monthTwo}/>
+                            <MonthItem month={calendar.monthOne} selectedDay={calendar.selectedDay} key="1"/>
+                            <MonthItem month={calendar.monthTwo} selectedDay={calendar.selectedDay} key="2"/>
                         </div>
                     )
                 }}

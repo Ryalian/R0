@@ -24,7 +24,7 @@ export default class DiracSea extends React.Component {
         return (
             <div className="type-01 dirac-sea">
                 {/* {this.renderItems()} */}
-                <Calendar />
+                <Calendar loadAction={this.props.loadAction}/>
             </div>
         )
     }

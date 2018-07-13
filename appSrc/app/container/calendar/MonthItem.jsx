@@ -1,7 +1,8 @@
 import React from 'react';
 import DayItem from './DayItem';
 import CalendarHeader from './CalendarHeader';
-import { startOfMonth, lastDayOfMonth, addDays, getDate, getDay, getMonth, getYear  } from 'date-fns';
+import { CalendarContext } from './CalendarContext';
+import { startOfMonth, lastDayOfMonth,addDays, getDate, getDay, getMonth, getYear } from 'date-fns';
 
 const styles = {
     "position": "relative",
@@ -35,8 +36,6 @@ export default class MonthItem extends React.Component {
             timer++;
         }
 
-        // console.log(days, this.state.endOfMonth);
-
         let offsets = getDay(startDayOfMonth);
 
         return days.map((day, index) => {
@@ -50,7 +49,10 @@ export default class MonthItem extends React.Component {
                     date: day,
                     dateOfMonth
                 }
-                return (<DayItem {...props} key={index}/>)
+                return (
+                    <CalendarContext.Consumer key={index}>
+                        {calendar => (<DayItem {...props} {...calendar}/>)}
+                    </CalendarContext.Consumer>)
             }
         )
     }

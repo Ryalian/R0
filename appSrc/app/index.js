@@ -20,14 +20,23 @@ class App extends React.Component {
             state: [],
             items: []
         }
+
+        this.loadActions = this.loadActions.bind(this)
     }
     componentDidMount() {
         axios.get("/getS2Engines").then(({data}) => {
             let S2List = data.S2Kikan;
-            
+            // TODO: make the following more deterministic
+            delete S2List[0].actions;
             // load data onto machine
             this.setState(S2List[0]); 
         });
+    }
+
+    loadActions(actions) {
+        this.setState({
+            actions: actions
+        })
     }
 
     render() {
@@ -36,7 +45,7 @@ class App extends React.Component {
                 <CoreEngine core={this.state.core}/>
                 <StateEngine state={this.state.state}/>
                 <ActionEngine actions={this.state.actions}/>
-                <DiracSea items={this.state.items} />
+                <DiracSea items={this.state.items} loadAction={this.loadActions}/>
             </div>
         );
     }

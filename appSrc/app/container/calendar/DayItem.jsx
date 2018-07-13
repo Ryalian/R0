@@ -1,39 +1,45 @@
 import React from 'react';
 import config from './config';
 
+import { isSameDay, isToday } from 'date-fns';
+
 export default class DayItem extends React.Component {
     constructor(props) {
         super(props);
+        
 
-        this.state = {
-            styles: {
-                "position": "absolute",
-                "top": this.props.dayOffset.y * config.itemHeight + "px",
-                "left": this.props.dayOffset.x * config.itemWidth + "px",
-            }
-        }
-
-        this.handleClick = this.handleClick.bind(this)
+        this.getDayClass = this.getDayClass.bind(this);
+        this.getStyles = this.getStyles.bind(this);
+        this.handleClick = this.handleClick.bind(this);
     }
 
-    componentWillReceiveProps(nextProps) {
-        this.setState({
-            styles: {
-                ...this.state.styles,
-                "top": nextProps.dayOffset.y * config.itemHeight + "px",
-                "left": nextProps.dayOffset.x * config.itemWidth + "px",
-            }
-        })
+    componentWillReceiveProps() {
+    }
+
+    getDayClass() {
+        let selectedDayClass = isSameDay(this.props.date, this.props.selectedDay)? "calendar-selected-day": "";
+        let todayClass = isToday(this.props.date)? "calenar-today": "";
+        let classList = ['calendar-item', 'calendar-day', selectedDayClass, todayClass];
+
+        return classList.join(" ");
+    }
+
+    getStyles() {
+        return {
+            "position": "absolute",
+            "top": this.props.dayOffset.y * config.itemHeight + "px",
+            "left": this.props.dayOffset.x * config.itemWidth + "px"
+        }
     }
 
     handleClick() {
-        console.log(this.props.date)
+        this.props.calendarSelectDay(this.props.date);
     }
 
     render() {
         return (
-            <span style={this.state.styles}
-                className="calendar-item"
+            <span style={this.getStyles()}
+                className={this.getDayClass()}
                 onClick={this.handleClick}>
                 {this.props.dateOfMonth}
             </span>

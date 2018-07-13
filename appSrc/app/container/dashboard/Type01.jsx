@@ -3,6 +3,12 @@ import React from 'react';
 export default class CoreEngine extends React.Component {
     constructor() {
         super();
+        this.moodsList = [
+            {mood: 'HAPPY', expression: ':)'},
+            {mood: 'SAD', expression: ':('},
+            {mood: 'ANGRY', expression: ':)'},
+            {mood: 'DUMP', expression: ':)'},
+        ]
         console.log("Core Engine loaded");
     }
     
@@ -13,7 +19,7 @@ export default class CoreEngine extends React.Component {
     render() {
         return (
             <div className="type-01 core-engine">
-                :(
+                :)
             </div>
         )
     }

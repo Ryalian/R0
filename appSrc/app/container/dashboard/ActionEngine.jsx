@@ -8,23 +8,15 @@ export default class ActionEngine extends React.Component {
         this.renderActionList = this.renderActionList.bind(this);
     }    
     
-    componentWillMount() {
+    componentWillReceiveProps(nextProps) {
     }
 
     renderActionList() {
-        return (
-            this.props.actions.map(
-                (action) => {
-                    return (
-                        <div key={'action_' + action} className="rail-coin" >
-                            <button className="rail-trigger">
-                                {action}
-                            </button>
-                        </div>
-                    )
-                }
-            )
-        );
+        return this.props.actions.map((actionJSX, idx) => (
+            <div key={'action_' + idx} className="rail-coin" >
+                {actionJSX}
+            </div>
+        ))
     }
 
     render() {
