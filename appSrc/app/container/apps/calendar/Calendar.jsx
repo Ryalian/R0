@@ -119,9 +119,8 @@ class Calendar extends React.Component {
 
 }
 
-Calendar.actions = {
-    loadState: 'loadState',
-    loadAction: 'loadActions'
+Calendar.meta = {
+    name: 'calendar'
 }
 
 export default appGenerator(Calendar);
