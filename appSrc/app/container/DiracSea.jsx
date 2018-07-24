@@ -1,31 +1,55 @@
 import React from 'react';
-import Calendar from './calendar/Calendar';
+import { Route, Switch, Redirect, withRouter } from "react-router-dom";
+import { connect } from 'react-redux';
 
-export default class DiracSea extends React.Component {
-    constructor() {
-        super();
-        console.log("DiracSea Engine loaded");
+import Apps from "./apps";
 
-        // this.renderItems = this.renderItems.bind(this);
+class DiracSea extends React.Component {
+    constructor(props) {
+        super(props);
+        
+        this.renderRoute = this.renderRoute.bind(this)
     }    
     
-    componentWillMount() {
+    componentDidMount() {
+        console.log("DiracSea Engine loaded");
     }
 
-    // renderItems() {
-    //     return (
-    //         this.props.items.map((item) => {
-    //             return <ItemCard core={item} key={item}/>
-    //         })
-    //     );
-    // }
+    componentDidUpdate() {
+    }
+
+    renderRoute() {
+        const { selectedApp } = this.props;
+        let App = React.Fragment,
+            appRoute = '';
+
+        if(selectedApp) {
+            App = selectedApp.driver;
+            appRoute = `/${selectedApp.name}`
+        }
+
+        return (
+            <Switch>
+                <Route 
+                    path={appRoute}
+                    render={(props) => selectedApp? <App loadAction={this.props.loadAction} {...props}/>: <App />}
+                />
+                <Redirect to={`/${Apps[0].name}`} />
+            </Switch>
+        )
+    }
 
     render() {
         return (
             <div className="type-01 dirac-sea">
-                {/* {this.renderItems()} */}
-                <Calendar loadAction={this.props.loadAction}/>
+                {this.renderRoute()}
             </div>
         )
     }
 }
+
+function mapStateToProps({app}) {
+    return { selectedApp: app }
+}
+
+export default withRouter(connect(mapStateToProps, {  })(DiracSea));

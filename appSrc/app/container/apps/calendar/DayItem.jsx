@@ -7,7 +7,6 @@ export default class DayItem extends React.Component {
     constructor(props) {
         super(props);
         
-
         this.getDayClass = this.getDayClass.bind(this);
         this.getStyles = this.getStyles.bind(this);
         this.handleClick = this.handleClick.bind(this);

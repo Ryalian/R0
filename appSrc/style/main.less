@@ -15,6 +15,21 @@ div, span {
     -moz-box-sizing: border-box;    /* Firefox, other Gecko */
     box-sizing: border-box;         /* Opera/IE 8+ */
 }
+
+*:focus {
+    outline: none;
+}
+
+button {
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.hidden-element {
+    visibility: hidden;
+}
+
 .container {
     width: 100vw;
     height: 100vh;
@@ -25,15 +40,5 @@ div, span {
         padding: 15px;
         display: inline-block;
         box-sizing: border-box;
-    }
-}
-
-*:focus {
-    outline: none;
-}
-
-button {
-    &:hover {
-        cursor: pointer;
     }
 }

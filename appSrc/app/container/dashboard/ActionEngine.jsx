@@ -3,11 +3,14 @@ import React from 'react';
 export default class ActionEngine extends React.Component {
     constructor() {
         super();
-        console.log("Action Engine loaded");
 
         this.renderActionList = this.renderActionList.bind(this);
     }    
     
+    componentDidMount() {
+        console.log("Action Engine loaded");
+    }
+
     componentWillReceiveProps(nextProps) {
     }
 

@@ -1,5 +1,9 @@
 import React from 'react';
 import { render } from 'react-dom';
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import reduxThunk from 'redux-thunk';
+import { BrowserRouter } from "react-router-dom";
 import axios from 'axios';
 
 import CoreEngine from 'container/dashboard/Type01';
@@ -9,6 +13,12 @@ import DiracSea from 'container/DiracSea';
 
 // import Core Mechanic
 import Core from 'container/core/coreFunc';
+
+// import reducers
+import reducers from './reducers';
+
+
+const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
 
 class App extends React.Component {
     constructor() {
@@ -31,6 +41,7 @@ class App extends React.Component {
             // load data onto machine
             this.setState(S2List[0]); 
         });
+        axios.get('/eventList');
     }
 
     loadActions(actions) {
@@ -39,16 +50,28 @@ class App extends React.Component {
         })
     }
 
+    addActions(actions) {
+        this.setState({
+            actions: [...this.state.actions, ...actions]
+        })
+    }
+
     render() {
         return (
-            <div className="container">
-                <CoreEngine core={this.state.core}/>
-                <StateEngine state={this.state.state}/>
-                <ActionEngine actions={this.state.actions}/>
-                <DiracSea items={this.state.items} loadAction={this.loadActions}/>
-            </div>
+            <BrowserRouter>
+                <div className="container">
+                    <CoreEngine core={this.state.core}/>
+                    <StateEngine state={this.state.state}/>
+                    <ActionEngine actions={this.state.actions}/>
+                    <DiracSea loadAction={this.loadActions}/>
+                </div>
+            </BrowserRouter>
         );
     }
 }
 
-render(<App />, window.document.getElementById('app'));
+render(
+    <Provider store={store}>
+        <App />
+    </Provider>
+    , window.document.getElementById('app'));
