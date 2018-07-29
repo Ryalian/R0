@@ -32,7 +32,7 @@ class DiracSea extends React.Component {
             <Switch>
                 <Route 
                     path={appRoute}
-                    render={(props) => selectedApp? <App loadAction={this.props.loadAction} {...props}/>: <App />}
+                    render={(props) => selectedApp? <App {...this.props} {...props}/>: <App />}
                 />
                 <Redirect to={`/${Apps[0].name}`} />
             </Switch>
@@ -48,8 +48,11 @@ class DiracSea extends React.Component {
     }
 }
 
-function mapStateToProps({app}) {
-    return { selectedApp: app }
+function mapStateToProps({app, appState}) {
+    if (!app) return {selectedApp: null, appState: null}
+
+    let appName = app.loadedApp.name
+    return { selectedApp: app.loadedApp, appState: appState[appName] }
 }
 
 export default withRouter(connect(mapStateToProps, {  })(DiracSea));

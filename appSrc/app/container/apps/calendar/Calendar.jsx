@@ -1,11 +1,15 @@
 import React from 'react';
-import { Switch, Route, Link, withRouter } from "react-router-dom";
+import { Switch, Route, Link } from "react-router-dom";
 import { addMonths } from 'date-fns';
+import { connect } from 'react-redux';
+import { pushAppTask } from "../../../actions";
 import { appGenerator } from "../appFactory";
 
 import Months from './MonthContainer';
 import CreateEvent from './CreateEvent'; 
-import {CalendarContext} from './CalendarContext'
+import {CalendarContext} from './CalendarContext';
+
+
 
 
 class Calendar extends React.Component {
@@ -23,12 +27,14 @@ class Calendar extends React.Component {
 
         // init state
         this.state = {
-            monthOne: monthOne,
-            monthTwo: addMonths(monthOne, 1),
-            selectedDay: null,
+            // monthOne: monthOne,
+            // monthTwo: addMonths(monthOne, 1),
+            // selectedDay: null,
+            // calendarSelectDay: this.calendarSelectDay,
+            // isCreating: false,
+            // currentPath: ''
             calendarSelectDay: this.calendarSelectDay,
-            isCreating: false,
-            currentPath: ''
+
         };
 
         // init ActionsEngine items
@@ -40,17 +46,27 @@ class Calendar extends React.Component {
     }
 
     nextMonth() {
-        this.setState({
-            monthOne: addMonths(this.state.monthOne, 1),
-            monthTwo: addMonths(this.state.monthTwo, 1)
-        });
+        const {monthOne, monthTwo} = this.props.appState;
+
+        this.props.pushAppTask({
+            type: 'UPDATE_APP_DATA',
+            content: {
+                monthOne: addMonths(monthOne, 1),
+                monthTwo: addMonths(monthTwo, 1)
+            }
+        })
     }
 
     prevMonth() {
-        this.setState({
-            monthOne: addMonths(this.state.monthOne, -1),
-            monthTwo: addMonths(this.state.monthTwo, -1)
-        });
+        const {monthOne, monthTwo} = this.props.appState;
+
+        this.props.pushAppTask({
+            type: 'UPDATE_APP_DATA',
+            content: {
+                monthOne: addMonths(monthOne, -1),
+                monthTwo: addMonths(monthTwo, -1)
+            }
+        })
     }
 
     createEvent() {
@@ -60,16 +76,19 @@ class Calendar extends React.Component {
     }
 
     calendarSelectDay(selectedDay) {
-        this.setState(
-            { selectedDay: selectedDay },
-            () => this.loadActions()
-        )
+
+        this.props.pushAppTask({
+            type: 'UPDATE_APP_DATA',
+            content: {
+                selectedDay: selectedDay
+            }
+        });
     }
 
     loadActions() {
         let actions = [...this.selectMonthActions];
         
-        if( this.state.selectedDay ) {
+        if( this.props.appState.selectedDay ) {
             actions.push(
                 <Link to={this.state.currentPath + "/createEvent"}>
                     <button onClick={this.createEvent} className="rail-trigger">Add Event</button>
@@ -95,8 +114,11 @@ class Calendar extends React.Component {
     }
 
     componentDidUpdate() {
-        
+        if(this.props.appState.selectedDay) {
+            this.loadActions();
+        }
     }
+    
 
     renderRouter() {
         return (
@@ -110,7 +132,7 @@ class Calendar extends React.Component {
     render() {
         return (
             <div>
-                <CalendarContext.Provider value={this.state}>
+                <CalendarContext.Provider value={{...this.state, ...this.props.appState}}>
                     {this.renderRouter()}
                 </CalendarContext.Provider>
             </div>
@@ -119,8 +141,21 @@ class Calendar extends React.Component {
 
 }
 
+Calendar.initState = () => {
+    let monthOne = new Date()
+
+    return {
+        monthOne: monthOne,
+        monthTwo: addMonths(monthOne, 1),
+        selectedDay: null,
+        isCreating: false,
+        currentPath: ''
+    }
+}
+
 Calendar.meta = {
     name: 'calendar'
 }
 
-export default appGenerator(Calendar);
+
+export default connect(null, { pushAppTask })(appGenerator(Calendar));

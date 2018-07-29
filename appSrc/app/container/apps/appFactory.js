@@ -5,7 +5,7 @@ export const appGenerator = (app, appName) => {
     }
 
     if(!app.dummyPlug) {
-        console.error(`This is a empty machine`)
+        // console.error(`This is a empty machine`)
     }
 
     return app;
