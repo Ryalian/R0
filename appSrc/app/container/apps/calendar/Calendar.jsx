@@ -27,12 +27,6 @@ class Calendar extends React.Component {
 
         // init state
         this.state = {
-            // monthOne: monthOne,
-            // monthTwo: addMonths(monthOne, 1),
-            // selectedDay: null,
-            // calendarSelectDay: this.calendarSelectDay,
-            // isCreating: false,
-            // currentPath: ''
             calendarSelectDay: this.calendarSelectDay,
 
         };
@@ -96,7 +90,12 @@ class Calendar extends React.Component {
             )
         }
 
-        this.props.loadAction(actions);
+        this.props.pushAppTask({
+            type: 'UPDATE_APP_ACTION',
+            content: [...actions]
+        });
+
+        // this.props.loadAction(actions);
     }
 
     renderCreateEvent(props) {

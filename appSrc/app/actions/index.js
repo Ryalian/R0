@@ -4,7 +4,11 @@ import {
     SET_APP,
     SET_APP_DATA,
     UPDATE_APP_DATA,
+    UPDATE_APP_STATE,
+    UPDATE_APP_ACTION,
+
     PUSH_APP_TASK,
+    SHIFT_APP_TASK,
     PROCESS_APP_TASK,
 
     GET_ACTION,
@@ -38,6 +42,13 @@ export const pushAppTask = (value) => dispatch => {
     })
 }
 
+export const shiftAppTask = () => dispatch => {
+    dispatch({
+        type: SHIFT_APP_TASK,
+        payload: { message: 'Task complete'}
+    })
+}
+
 export const processAppTask = (value) => dispatch => {
     switch (value.type) {
         // TODO: put the type string into a const
@@ -49,7 +60,18 @@ export const processAppTask = (value) => dispatch => {
                 target: value.target
             })
             break;
-    
+            
+        case UPDATE_APP_ACTION:
+            dispatch({
+                type: SET_ACTION,
+                payload: value.content
+            })
+            console.log('Update actions ', value)
+            break;
+
+        case UPDATE_APP_STATE:
+            break;
+
         default:
             break;
     }

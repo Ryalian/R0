@@ -1,6 +1,7 @@
 import {
     SET_APP,
-    PUSH_APP_TASK
+    PUSH_APP_TASK,
+    SHIFT_APP_TASK
 } from '../actions/types';
 
 const initAppState = {
@@ -20,6 +21,13 @@ export default function(state = initAppState, action) {
                 ...state,
                 tasksList: [...state.tasksList, action.payload]
             };
+        case SHIFT_APP_TASK:
+            let newList = [...state.tasksList];
+            newList.shift();
+            return {
+                ...state,
+                tasksList: newList
+            }
         default:
             return state;
     }

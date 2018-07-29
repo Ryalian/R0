@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter, matchPath } from "react-router-dom";
 import { connect } from 'react-redux';
-import { setApp, setAppState, processAppTask } from '../../actions';
+import { setApp, setAppState, processAppTask, shiftAppTask } from '../../actions';
 import Apps from "../apps";
 
 class CoreEngine extends React.Component {
@@ -33,10 +33,13 @@ class CoreEngine extends React.Component {
 
     componentDidUpdate() {
         if(this.props.tasksList.length) {
+            console.log(this.props.tasksList.length)
             this.props.processAppTask({
                 ...this.props.tasksList[this.props.tasksList.length - 1], //TODO: Ugly..
                 target: this.props.app.name
             })
+
+            this.props.shiftAppTask();
         }
     }
 
@@ -104,4 +107,4 @@ function mapStateToProps({app}, { history, location }) {
         location }
 }
 
-export default withRouter(connect(mapStateToProps, { setApp, setAppState, processAppTask })(CoreEngine));
+export default withRouter(connect(mapStateToProps, { setApp, setAppState, processAppTask, shiftAppTask })(CoreEngine));

@@ -1,6 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-export default class ActionEngine extends React.Component {
+class ActionEngine extends React.Component {
     constructor() {
         super();
 
@@ -15,7 +16,7 @@ export default class ActionEngine extends React.Component {
     }
 
     renderActionList() {
-        return this.props.actions.map((actionJSX, idx) => (
+        return this.props.actionsList.map((actionJSX, idx) => (
             <div key={'action_' + idx} className="rail-coin" >
                 {actionJSX}
             </div>
@@ -30,3 +31,11 @@ export default class ActionEngine extends React.Component {
         )
     }
 }
+
+const mapStateToProps = ({appAction}) => {
+    return {
+        actionsList: appAction.items
+    }
+}
+
+export default connect(mapStateToProps, {})(ActionEngine)

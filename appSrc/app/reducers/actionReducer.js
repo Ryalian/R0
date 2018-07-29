@@ -9,9 +9,10 @@ const initAction = {
     items: []
 }
 
-export default function(state = initState, action) {
+export default function(state = initAction, action) {
     switch (action.type) {
         case GET_ACTION:
+            // TODO: is this useful under redux?????
             return state;
         case SET_ACTION:
             return {
