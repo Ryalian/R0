@@ -16,7 +16,10 @@ var config = {
     },
     resolve: {
         modulesDirectories: ['node_modules', './app'],
-        extensions: ['', '.js', '.jsx']
+        extensions: ['', '.js', '.jsx'],
+        alias: {
+            config: path.join(__dirname, 'config', process.env.NODE_ENV)
+        }
     },
     module: {
         loaders: [
