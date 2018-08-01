@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 import appReducer from './appReducer';
-import stateReducer from "./stateReducer";
-import actionReducer from "./actionReducer";
+import LCLReducer from "./LCLReducer";
+import actionReducer from "./ATFieldReducer";
 
 export default combineReducers({
     app: appReducer,
-    appState: stateReducer,
-    appAction: actionReducer
+    appLCL: LCLReducer,
+    appATField: actionReducer
 });

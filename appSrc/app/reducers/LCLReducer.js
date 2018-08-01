@@ -3,11 +3,11 @@ import {
     UPDATE_APP_DATA
 } from "../actions/types";
 
-const initState = {
+const initPlugData = {
     
 }
 
-export default function(state = initState, action) {
+export default function(state = initPlugData, action) {
     let newState = {...state};
     switch (action.type) {
         //TODO: data may be better to move into app

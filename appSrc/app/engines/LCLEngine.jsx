@@ -1,23 +1,23 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 
-export default class StateEngine extends React.Component {
+export default class LCLEngine extends React.Component {
     constructor() {
         super();
 
         //bind method
-        this.renderState = this.renderState.bind(this);
+        this.renderLCL = this.renderLCL.bind(this);
     }    
     
     componentDidMount() {
-        console.log("State Engine loaded");
+        console.log("LCL Engine loaded");
     }
 
     shouldComponentUpdate(nextProps) {
         return this.props.state !== nextProps.state;
     }
 
-    renderState() {
+    renderLCL() {
         return (
             <React.Fragment>
                 <div key={"key_1"} className="monument">
@@ -32,8 +32,8 @@ export default class StateEngine extends React.Component {
 
     render() {
         return (
-            <div className="type-01 state-engine">
-                {this.renderState()}
+            <div className="type-01 LCL-engine">
+                {this.renderLCL()}
             </div>
         )
     }

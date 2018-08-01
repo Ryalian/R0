@@ -9,11 +9,11 @@ export const PUSH_APP_TASK = 'PUSH_APP_TASK';
 export const SHIFT_APP_TASK = 'SHIFT_APP_TASK';
 export const PROCESS_APP_TASK = 'PROCESS_APP_TASK';
 
-// Action action types
-export const GET_ACTION = 'GET_ACTION';
-export const SET_ACTION = 'SET_ACTION';
-export const ADD_ACTION = 'ADD_ACTION';
-export const DELETE_ACTION = 'DELETE_ACTION';
+// AT field action types
+export const GET_AT_FIELD = 'GET_AT_FIELD';
+export const SET_AT_FIELD = 'SET_AT_FIELD';
+export const ADD_AT_FIELD = 'ADD_AT_FIELD';
+export const DELETE_AT_FIELD = 'DELETE_AT_FIELD';
 
-// State action types
-export const CORE_SET_ACTION = 'CORE_SET_ACTION';
+// LCL action types
+export const CORE_SET_AT_FIELD = 'CORE_SET_AT_FIELD';

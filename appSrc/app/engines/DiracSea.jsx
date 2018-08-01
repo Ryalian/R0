@@ -2,8 +2,6 @@ import React from 'react';
 import { Route, Switch, Redirect, withRouter } from "react-router-dom";
 import { connect } from 'react-redux';
 
-import Apps from "./apps";
-
 class DiracSea extends React.Component {
     constructor(props) {
         super(props);
@@ -34,7 +32,6 @@ class DiracSea extends React.Component {
                     path={appRoute}
                     render={(props) => selectedApp? <App {...this.props} {...props}/>: <App />}
                 />
-                <Redirect to={`/${Apps[0].name}`} />
             </Switch>
         )
     }
@@ -48,11 +45,11 @@ class DiracSea extends React.Component {
     }
 }
 
-function mapStateToProps({app, appState}) {
-    if (!app) return {selectedApp: null, appState: null}
+function mapStateToProps({app, appLCL}) {
+    if (!app) return {selectedApp: null, appLCL: null}
 
-    let appName = app.loadedApp.name
-    return { selectedApp: app.loadedApp, appState: appState[appName] }
+    let appName = app.loadedPlug.name
+    return { selectedApp: app.loadedPlug, appLCL: appLCL[appName] }
 }
 
 export default withRouter(connect(mapStateToProps, {  })(DiracSea));

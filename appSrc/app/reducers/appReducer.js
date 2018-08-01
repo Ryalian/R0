@@ -4,17 +4,17 @@ import {
     SHIFT_APP_TASK
 } from '../actions/types';
 
-const initAppState = {
-    loadedApp: { name: null, driver: null},
+const initappLCL = {
+    loadedPlug: { name: null, driver: null},
     tasksList: []
 }
 
-export default function(state = initAppState, action) {
+export default function(state = initappLCL, action) {
     switch (action.type) {
         case SET_APP:
             return {
                 ...state,
-                loadedApp: action.payload || null
+                loadedPlug: action.payload || null
             };
         case PUSH_APP_TASK:
             return {

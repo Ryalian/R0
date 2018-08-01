@@ -6,32 +6,22 @@ import reduxThunk from 'redux-thunk';
 import { BrowserRouter } from "react-router-dom";
 import axios from 'axios';
 
-import CoreEngine from 'container/dashboard/Type01';
-import StateEngine from 'container/dashboard/StateEngine';
-import ActionEngine from 'container/dashboard/ActionEngine';
-import DiracSea from 'container/DiracSea';
-
-// import Core Mechanic
-import Core from 'container/core/coreFunc';
+import CoreEngine from './engines/Type01';
+import LCLEngine from './engines/LCLEngine';
+import ATFieldEngine from './engines/ATFieldEngine';
+import DiracSea from './engines/DiracSea';
 
 // import reducers
 import reducers from './reducers';
-
-
-const store = createStore(reducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(), applyMiddleware(reduxThunk));
+const store = createStore(
+    reducers,
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+    applyMiddleware(reduxThunk)
+);
 
 class App extends React.Component {
     constructor() {
         super();
-
-        this.state = {
-            core: Core,
-            actions: [],
-            state: [],
-            items: []
-        }
-
-        this.loadActions = this.loadActions.bind(this)
     }
     componentDidMount() {
         axios.get("/getS2Engines").then(({data}) => {
@@ -44,26 +34,14 @@ class App extends React.Component {
         axios.get('/eventList');
     }
 
-    loadActions(actions) {
-        this.setState({
-            actions: actions
-        })
-    }
-
-    addActions(actions) {
-        this.setState({
-            actions: [...this.state.actions, ...actions]
-        })
-    }
-
     render() {
         return (
             <BrowserRouter>
                 <div className="container">
-                    <CoreEngine core={this.state.core}/>
-                    <StateEngine state={this.state.state}/>
-                    <ActionEngine actions={this.state.actions}/>
-                    <DiracSea loadAction={this.loadActions}/>
+                    <CoreEngine/>
+                    <LCLEngine/>
+                    <ATFieldEngine/>
+                    <DiracSea/>
                 </div>
             </BrowserRouter>
         );

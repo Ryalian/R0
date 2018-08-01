@@ -3,7 +3,7 @@ import { Switch, Route, Link } from "react-router-dom";
 import { addMonths } from 'date-fns';
 import { connect } from 'react-redux';
 import { pushAppTask } from "../../../actions";
-import { appGenerator } from "../appFactory";
+import { plugGenerator } from "../plugFactory";
 
 import Months from './MonthContainer';
 import CreateEvent from './CreateEvent'; 
@@ -40,7 +40,7 @@ class Calendar extends React.Component {
     }
 
     nextMonth() {
-        const {monthOne, monthTwo} = this.props.appState;
+        const {monthOne, monthTwo} = this.props.appLCL;
 
         this.props.pushAppTask({
             type: 'UPDATE_APP_DATA',
@@ -52,7 +52,7 @@ class Calendar extends React.Component {
     }
 
     prevMonth() {
-        const {monthOne, monthTwo} = this.props.appState;
+        const {monthOne, monthTwo} = this.props.appLCL;
 
         this.props.pushAppTask({
             type: 'UPDATE_APP_DATA',
@@ -82,7 +82,7 @@ class Calendar extends React.Component {
     loadActions() {
         let actions = [...this.selectMonthActions];
         
-        if( this.props.appState.selectedDay ) {
+        if( this.props.appLCL.selectedDay ) {
             actions.push(
                 <Link to={this.state.currentPath + "/createEvent"}>
                     <button onClick={this.createEvent} className="rail-trigger">Add Event</button>
@@ -113,7 +113,7 @@ class Calendar extends React.Component {
     }
 
     componentDidUpdate() {
-        if(this.props.appState.selectedDay) {
+        if(this.props.appLCL.selectedDay) {
             this.loadActions();
         }
     }
@@ -131,7 +131,7 @@ class Calendar extends React.Component {
     render() {
         return (
             <div>
-                <CalendarContext.Provider value={{...this.state, ...this.props.appState}}>
+                <CalendarContext.Provider value={{...this.state, ...this.props.appLCL}}>
                     {this.renderRouter()}
                 </CalendarContext.Provider>
             </div>
@@ -140,7 +140,7 @@ class Calendar extends React.Component {
 
 }
 
-Calendar.initState = () => {
+Calendar.initPlugData = () => {
     let monthOne = new Date()
 
     return {
@@ -157,4 +157,4 @@ Calendar.meta = {
 }
 
 
-export default connect(null, { pushAppTask })(appGenerator(Calendar));
+export default connect(null, { pushAppTask })(plugGenerator(Calendar));

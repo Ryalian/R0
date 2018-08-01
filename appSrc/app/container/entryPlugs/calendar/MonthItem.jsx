@@ -12,6 +12,7 @@ const styles = {
 export default class MonthItem extends React.Component {
     constructor(props) {
         super(props);
+
         let monthList = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
         this.state = {
             monthList: monthList.reduce((accu, curr, idx) => {
@@ -49,10 +50,12 @@ export default class MonthItem extends React.Component {
                     date: day,
                     dateOfMonth
                 }
+
                 return (
                     <CalendarContext.Consumer key={index}>
-                        {calendar => (<DayItem {...props} {...calendar}/>)}
-                    </CalendarContext.Consumer>)
+                        { calendar => (<DayItem {...props} {...calendar}/>) }
+                    </CalendarContext.Consumer>
+                )
             }
         )
     }
