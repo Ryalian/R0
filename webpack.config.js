@@ -1,5 +1,6 @@
 
 var path = require("path");
+var webpack = require("webpack");
 
 var DIST_DIR = path.resolve(__dirname, "public");
 var SRC_DIR = path.resolve(__dirname, "appSrc");
