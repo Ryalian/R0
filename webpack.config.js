@@ -1,13 +1,8 @@
 
 var path = require("path");
-var webpack = require("webpack");
 
 var DIST_DIR = path.resolve(__dirname, "public");
 var SRC_DIR = path.resolve(__dirname, "appSrc");
-
-new webpack.DefinePlugin({
-    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
-})
 
 var config = {
     entry: [
@@ -21,10 +16,7 @@ var config = {
     },
     resolve: {
         modulesDirectories: ['node_modules', './app'],
-        extensions: ['', '.js', '.jsx'],
-        alias: {
-            config: path.join(__dirname, 'config', process.env.NODE_ENV)
-        }
+        extensions: ['', '.js', '.jsx']
     },
     module: {
         loaders: [
