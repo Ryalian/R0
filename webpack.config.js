@@ -4,6 +4,10 @@ var path = require("path");
 var DIST_DIR = path.resolve(__dirname, "public");
 var SRC_DIR = path.resolve(__dirname, "appSrc");
 
+new webpack.DefinePlugin({
+    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
+})
+
 var config = {
     entry: [
         SRC_DIR + "/app/index.js",
