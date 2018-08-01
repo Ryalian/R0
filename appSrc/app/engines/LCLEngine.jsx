@@ -13,10 +13,6 @@ export default class LCLEngine extends React.Component {
         console.log("LCL Engine loaded");
     }
 
-    shouldComponentUpdate(nextProps) {
-        return this.props.state !== nextProps.state;
-    }
-
     renderLCL() {
         return (
             <React.Fragment>

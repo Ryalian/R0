@@ -29,7 +29,7 @@ class ATFieldEngine extends React.Component {
     }
 }
 
-const mapStateToProps = ({appATField}) => {
+const mapStateToProps = ({ appATField }) => {
     return {
         ATFieldsList: appATField.items
     }

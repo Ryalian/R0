@@ -2,6 +2,8 @@
 
 Project O is a personal project to build all kind of fun stuff with a full stack platform. Current stage(Engine) is R0.
 
+This page is the roadmap of the app. To see how mechanics works, please read [here](./appSrc/app/readme.md)
+
 R0 will be the version below 1.0:
   - v0.1 Set up basic React, webpack and express - Done
   - v0.2 Set up basic wireframe of state, action, engine and dirac sea(item pool, aka DS). See detail below - Done
@@ -20,7 +22,7 @@ R0 will be the version below 1.0:
   - v0.5.6 Implement Action for the application(Add, edit, Remove DS item). No actual change to the data
   - v0.5.8 Implement database to replace hardcoded data. Action actually works.
  
- First Application is ready for delivery here. App will get small clean up until 1.0
+ First Application should be ready for delivery at this point. App will get small clean up until 1.0
 
   - v0.6 Create home page, make application selectable. Implementation of Router!
   - v0.7 Basic function of core Engine(SOUL!)
