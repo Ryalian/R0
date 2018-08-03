@@ -16,8 +16,10 @@ export default class DayItem extends React.Component {
     }
 
     getDayClass() {
-        let selectedDayClass = isSameDay(this.props.date, this.props.selectedDay)? "calendar-selected-day": "";
-        let todayClass = isToday(this.props.date)? "calenar-today": "";
+        const { date, selectedDay } = this.props;
+
+        let selectedDayClass = isSameDay(date, selectedDay)? "calendar-selected-day": "";
+        let todayClass = isToday(date)? "calenar-today": "";
         let classList = ['calendar-item', 'calendar-day', selectedDayClass, todayClass];
 
         return classList.join(" ");
@@ -32,7 +34,10 @@ export default class DayItem extends React.Component {
     }
 
     handleClick() {
-        this.props.calendarSelectDay(this.props.date);
+        const { date, selectedDay } = this.props;
+        const isDeselect = isSameDay(date, selectedDay);
+
+        this.props.calendarSelectDay(isDeselect? null : this.props.date);
     }
 
     render() {

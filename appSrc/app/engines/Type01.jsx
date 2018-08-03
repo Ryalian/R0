@@ -15,6 +15,7 @@ class CoreEngine extends React.Component {
                 {mood: 'ANGRY', expression: ':/'},
                 {mood: 'DUMP', expression: ':l'},
             ],
+            selectedMood: 0,
             showControl: false,
             version: 'Type 01'
         }
@@ -41,7 +42,11 @@ class CoreEngine extends React.Component {
                 ...this.props.tasksList[this.props.tasksList.length - 1], //TODO: Ugly..
                 target: this.props.plug.name
             })
-
+            
+            //TODO: make the following more meaningful
+            this.setState({
+                selectedMood: (this.state.selectedMood + 1) % this.state.moods.length
+            })
             this.props.shiftAppTask();
         }
     }
@@ -100,10 +105,12 @@ class CoreEngine extends React.Component {
     }
 
     render() {
+        const { moods, selectedMood } = this.state;
+
         return (
             <React.Fragment>
                 <div className="type-01 core-engine" onClick={this.triggerEngine}>
-                    :)
+                    { moods[selectedMood].expression }
                 </div>
 
                 <div className={this.getControlClasses()}>

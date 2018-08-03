@@ -9,7 +9,9 @@ import Months from './MonthContainer';
 import CreateEvent from './CreateEvent'; 
 import {CalendarContext} from './CalendarContext';
 
-
+const ENTRY_PLUG_META = {
+    name: 'calendar'
+}
 
 
 class Calendar extends React.Component {
@@ -32,11 +34,10 @@ class Calendar extends React.Component {
         };
 
         // init ActionsEngine items
-        this.selectMonthActions = [
+        this.selectMonthATFields = [
             <button onClick={this.prevMonth} className="rail-trigger">prev</button>,
             <button onClick={this.nextMonth} className="rail-trigger">next</button>
         ];
-
     }
 
     nextMonth() {
@@ -48,7 +49,7 @@ class Calendar extends React.Component {
                 monthOne: addMonths(monthOne, 1),
                 monthTwo: addMonths(monthTwo, 1)
             }
-        })
+        });
     }
 
     prevMonth() {
@@ -80,19 +81,30 @@ class Calendar extends React.Component {
     }
 
     loadActions() {
-        let actions = [...this.selectMonthActions];
+        let ATFields = [],
+            hasSubPate = this.props.location.pathname !== '/calendar';
         
-        if( this.props.appLCL.selectedDay ) {
-            actions.push(
+        if(!hasSubPate) {
+            ATFields = [...ATFields, ...this.selectMonthATFields];
+        }
+
+        if (this.props.appLCL.selectedDay && !hasSubPate) {
+            this.createEventATField = [
                 <Link to={this.state.currentPath + "/createEvent"}>
                     <button onClick={this.createEvent} className="rail-trigger">Add Event</button>
                 </Link>
-            )
+            ]
+            ATFields = [...ATFields, ...this.createEventATField];
         }
 
         this.props.pushAppTask({
             type: 'UPDATE_APP_ACTION',
-            content: [...actions]
+            content: [...ATFields].map(atfield => {
+                return {
+                    plugName: ENTRY_PLUG_META.name,
+                    content: atfield
+                }
+            })
         });
 
         // this.props.loadAction(actions);
@@ -113,9 +125,7 @@ class Calendar extends React.Component {
     }
 
     componentDidUpdate() {
-        if(this.props.appLCL.selectedDay) {
-            this.loadActions();
-        }
+        this.loadActions();
     }
     
 
@@ -152,9 +162,7 @@ Calendar.initPlugData = () => {
     }
 }
 
-Calendar.meta = {
-    name: 'calendar'
-}
+Calendar.meta = ENTRY_PLUG_META;
 
 
 export default connect(null, { pushAppTask })(plugGenerator(Calendar));

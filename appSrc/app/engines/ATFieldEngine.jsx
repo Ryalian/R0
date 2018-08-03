@@ -13,9 +13,9 @@ class ATFieldEngine extends React.Component {
     }
 
     renderActionList() {
-        return this.props.ATFieldsList.map((ATFieldJSX, idx) => (
+        return this.props.ATFieldsList.map((ATFieldObj, idx) => (
             <div key={'AT_Field_' + idx} className="rail-coin" >
-                {ATFieldJSX}
+                {ATFieldObj.content}
             </div>
         ))
     }
