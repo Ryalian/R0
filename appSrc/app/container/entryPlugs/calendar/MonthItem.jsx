@@ -2,7 +2,7 @@ import React from 'react';
 import DayItem from './DayItem';
 import CalendarHeader from './CalendarHeader';
 import { CalendarContext } from './CalendarContext';
-import { startOfMonth, lastDayOfMonth,addDays, getDate, getDay, getMonth, getYear } from 'date-fns';
+import { startOfMonth, lastDayOfMonth,addDays, getDate, getDay,getMonth, getYear } from 'date-fns';
 
 const styles = {
     "position": "relative",
@@ -13,13 +13,6 @@ export default class MonthItem extends React.Component {
     constructor(props) {
         super(props);
 
-        let monthList = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-        this.state = {
-            monthList: monthList.reduce((accu, curr, idx) => {
-                accu[idx] = curr;
-                return accu;
-            }, {})
-        }
     }
     
 
@@ -60,18 +53,9 @@ export default class MonthItem extends React.Component {
         )
     }
 
-    renderMonth() {
-        let currentDay = this.props.month,
-            currentMonth = getMonth(currentDay);
-        return (
-            <div>{this.state.monthList[currentMonth]} {getYear(currentDay)}</div>
-        )
-    }
-
     render() {
         return (
             <div style={styles} className="calendar-month">
-                {this.renderMonth()}
                 <CalendarHeader />
                 <div className="calendar-body">{this.renderDays()}</div>
             </div>

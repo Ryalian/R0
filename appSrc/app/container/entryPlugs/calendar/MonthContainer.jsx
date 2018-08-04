@@ -12,8 +12,8 @@ export default class MonthContainer extends React.Component {
                 {(calendar) => {
                     return (
                         <div>
-                            <MonthItem month={calendar.monthOne} selectedDay={calendar.selectedDay} key="1"/>
-                            <MonthItem month={calendar.monthTwo} selectedDay={calendar.selectedDay} key="2"/>
+                            <MonthItem month={calendar.monthOne} selectedDay={calendar.selectedDay} key="month_1"/>
+                            {/* <MonthItem month={calendar.monthTwo} selectedDay={calendar.selectedDay} key="month_2"/> */}
                         </div>
                     )
                 }}

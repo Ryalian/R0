@@ -1,7 +1,7 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
-export default class LCLEngine extends React.Component {
+class LCLEngine extends React.Component {
     constructor() {
         super();
 
@@ -13,17 +13,16 @@ export default class LCLEngine extends React.Component {
         console.log("LCL Engine loaded");
     }
 
+    componentDidUpdate() {
+    }
+
     renderLCL() {
-        return (
-            <React.Fragment>
-                <div key={"key_1"} className="monument">
-                    <Link to="/calendar"><button>calendar</button></Link>
-                </div>
-                <div key={"key_2"} className="monument">
-                    <Link to="/some"><button>some</button></Link>
-                </div>
-            </React.Fragment>
-        )
+        // TODO: this renders everytime. may be we should rerender this base on condition
+        // Not doing it yet because react is not actually rerendering
+        const LCL = [<div>fetching...</div>];
+        return this.props.LCL.map((lcl, idx) => (
+                    <span key={'LCL_' + idx}>{lcl}</span>
+                ))
     }
 
     render() {
@@ -34,3 +33,12 @@ export default class LCLEngine extends React.Component {
         )
     }
 }
+
+
+const mapStateToProps = ({ appLCL }) => {
+    return {
+        LCL: appLCL.LCL
+    }
+}
+
+export default connect(mapStateToProps, {})(LCLEngine)

@@ -3,6 +3,6 @@
  */
 
 export default {
-    itemWidth: 80,
-    itemHeight: 60
+    itemWidth: 14,
+    itemHeight: 18
 }

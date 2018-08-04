@@ -1,10 +1,11 @@
 import { 
     SET_APP_DATA,
-    UPDATE_APP_DATA
+    UPDATE_APP_DATA,
+    SET_LCL
 } from "../actions/types";
 
 const initPlugData = {
-    
+    LCL: []
 }
 
 export default function(state = initPlugData, action) {
@@ -21,7 +22,9 @@ export default function(state = initPlugData, action) {
             newState[action.target] = Object.assign(newState[action.target], action.payload);
             newState[action.target] = {...newState[action.target]}
             return newState;
-
+        case SET_LCL:
+            newState.LCL = action.payload;
+            return newState;
         default:
             return state;
     }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter, matchPath } from "react-router-dom";
 import { connect } from 'react-redux';
-import { loadedPlug, setLCLState, processAppTask, shiftAppTask } from '../actions';
+import { loadedPlug, setLCLState, processAppTask, clearAppTask } from '../actions';
 import EntryPlugs from "../container/entryPlugs";
 
 class CoreEngine extends React.Component {
@@ -37,17 +37,20 @@ class CoreEngine extends React.Component {
     }
 
     componentDidUpdate() {
-        if(this.props.tasksList.length) {
-            this.props.processAppTask({
-                ...this.props.tasksList[this.props.tasksList.length - 1], //TODO: Ugly..
+        let appTasks = this.props.tasksList;
+
+        if(appTasks.length) {
+            appTasks.forEach(task => this.props.processAppTask({
+                ...task,
                 target: this.props.plug.name
-            })
-            
+            }))
+
             //TODO: make the following more meaningful
             this.setState({
                 selectedMood: (this.state.selectedMood + 1) % this.state.moods.length
-            })
-            this.props.shiftAppTask();
+            });
+
+            this.props.clearAppTask()
         }
     }
 
@@ -130,4 +133,4 @@ function mapStateToProps({app}, { history, location }) {
     }
 }
 
-export default withRouter(connect(mapStateToProps, { loadedPlug, setLCLState, processAppTask, shiftAppTask })(CoreEngine));
+export default withRouter(connect(mapStateToProps, { loadedPlug, setLCLState, processAppTask, clearAppTask })(CoreEngine));

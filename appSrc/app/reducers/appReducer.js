@@ -1,7 +1,8 @@
 import {
     SET_APP,
     PUSH_APP_TASK,
-    SHIFT_APP_TASK
+    SHIFT_APP_TASK,
+    CLEAR_APP_TASK
 } from '../actions/types';
 
 const initappLCL = {
@@ -27,6 +28,11 @@ export default function(state = initappLCL, action) {
             return {
                 ...state,
                 tasksList: newList
+            }
+        case CLEAR_APP_TASK:
+            return {
+                ...state,
+                tasksList: []
             }
         default:
             return state;

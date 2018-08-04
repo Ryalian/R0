@@ -8,6 +8,7 @@ import { plugGenerator } from "../plugFactory";
 import Months from './MonthContainer';
 import CreateEvent from './CreateEvent'; 
 import {CalendarContext} from './CalendarContext';
+import LCLMonthInfo from "./LCLMonthInfo";
 
 const ENTRY_PLUG_META = {
     name: 'calendar'
@@ -21,9 +22,11 @@ class Calendar extends React.Component {
 
         // component methods
         this.calendarSelectDay = this.calendarSelectDay.bind(this);
-        this.loadActions = this.loadActions.bind(this);
+        this.loadATFields = this.loadATFields.bind(this);
+        this.loadLCL = this.loadLCL.bind(this);
         this.nextMonth = this.nextMonth.bind(this);
         this.prevMonth = this.prevMonth.bind(this);
+        this.getMonth = this.getMonth.bind(this);
         this.createEvent = this.createEvent.bind(this);
         this.renderRouter = this.renderRouter.bind(this);
 
@@ -80,7 +83,7 @@ class Calendar extends React.Component {
         });
     }
 
-    loadActions() {
+    loadATFields() {
         let ATFields = [],
             hasSubPate = this.props.location.pathname !== '/calendar';
         
@@ -106,8 +109,19 @@ class Calendar extends React.Component {
                 }
             })
         });
+    }
 
-        // this.props.loadAction(actions);
+    getMonth() {
+        return this.props.appLCL.monthOne.toString();
+    }
+
+    loadLCL() {
+        this.props.pushAppTask({
+            type: 'SET_LCL',
+            content: [
+                <LCLMonthInfo month={this.props.appLCL.monthOne}/>
+            ]
+        });
     }
 
     renderCreateEvent(props) {
@@ -116,19 +130,6 @@ class Calendar extends React.Component {
         )
     }
 
-    componentDidMount() {
-        this.setState({
-            currentPath: this.props.match.url
-        }, this.loadActions);
-
-        console.log('Calendar loaded!')
-    }
-
-    componentDidUpdate() {
-        this.loadActions();
-    }
-    
-
     renderRouter() {
         return (
             <Switch>
@@ -136,6 +137,19 @@ class Calendar extends React.Component {
             <Route path={this.state.currentPath + "/createEvent"} render={(props) => this.renderCreateEvent(props)} />
         </Switch>
         )
+    }
+
+    componentDidMount() {
+        this.setState({ currentPath: this.props.match.url });
+        this.loadATFields();
+        this.loadLCL();
+
+        console.log('Calendar loaded!')
+    }
+
+    componentDidUpdate() {
+        this.loadATFields();
+        this.loadLCL();
     }
 
     render() {

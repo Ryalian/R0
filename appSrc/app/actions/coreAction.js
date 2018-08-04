@@ -7,6 +7,7 @@ import {
 
     PUSH_APP_TASK,
     SHIFT_APP_TASK,
+    CLEAR_APP_TASK,
     SET_AT_FIELD
 } from './types';
 
@@ -36,7 +37,14 @@ export const pushAppTask = (value) => dispatch => {
 export const shiftAppTask = () => dispatch => {
     dispatch({
         type: SHIFT_APP_TASK,
-        payload: { message: 'Task complete'}
+        payload: { message: 'Task deleted'}
+    })
+}
+
+export const clearAppTask = () => dispatch => {
+    dispatch({
+        type: CLEAR_APP_TASK,
+        payload: { message: 'Tasks cleared' }
     })
 }
 
@@ -59,10 +67,11 @@ export const processAppTask = (value) => dispatch => {
             })
             break;
 
-        case UPDATE_APP_STATE:
-            break;
-
         default:
+            dispatch({
+                type: value.type,
+                payload: value.content
+            })
             break;
     }
 }

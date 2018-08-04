@@ -28,8 +28,8 @@ export default class DayItem extends React.Component {
     getStyles() {
         return {
             "position": "absolute",
-            "top": this.props.dayOffset.y * config.itemHeight + "px",
-            "left": this.props.dayOffset.x * config.itemWidth + "px"
+            "top": this.props.dayOffset.y * config.itemHeight + "%",
+            "left": this.props.dayOffset.x * config.itemWidth + "%"
         }
     }
 
