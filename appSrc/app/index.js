@@ -31,7 +31,7 @@ class App extends React.Component {
             // load data onto machine
             this.setState(S2List[0]); 
         });
-        axios.get('/eventList');
+        axios.get('/api/calendar');
     }
 
     render() {

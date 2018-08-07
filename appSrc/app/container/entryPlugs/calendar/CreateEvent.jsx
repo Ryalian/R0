@@ -9,9 +9,10 @@ export default class CreateEvent extends React.Component {
     constructor(props) {
         super(props);
 
+        const { startDate } = this.props;
         this.state = {
             title: '',
-            time: this.props.date || new Date(),
+            time: startDate? new Date(+startDate) : new Date(),
             content: ''
         }
 
@@ -47,18 +48,21 @@ export default class CreateEvent extends React.Component {
             time: getTime(this.props.date) || 0
         }
 
-        axios.post('/createEvent', payload)
-            .then((response) => {
-                console.log(response)
+        axios.post('/api/calendar/createEvent', payload)
+            .then(({data}) => {
+                console.log(data)
             });
     }
 
     componentDidMount() {
     }
 
+    componentDidUpdate() {
+    }
+
     render() {
         return (
-            <div>
+            <div className="calendar-create-event">
                 <div>
                     <label>Title: </label> <RInput value={this.state.title} onChange={this.handleTitleChange}/>
                 </div>

@@ -79,7 +79,7 @@ class CoreEngine extends React.Component {
      * @param {String} queryString query string for url setup
      */
     loadPlug(plug, queryString='') {
-        const {loadedPlug, setLCLState, history} = this.props;
+        const { loadedPlug, setLCLState, history, location } = this.props;
         
         history.push({
             pathname: `/${plug.name}`,

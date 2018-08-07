@@ -1,9 +1,13 @@
 import React from 'react';
-import { Switch, Route, Link } from "react-router-dom";
+import { Link, matchPath } from "react-router-dom";
 import { addMonths } from 'date-fns';
+import queryString from "query-string";
+
 import { connect } from 'react-redux';
 import { pushAppTask } from "../../../actions";
 import { plugGenerator } from "../plugFactory";
+import { changeQuery } from "../../../util";
+import RUIModal from "../../../components/ModalHOC";
 
 import Months from './MonthContainer';
 import CreateEvent from './CreateEvent'; 
@@ -28,7 +32,6 @@ class Calendar extends React.Component {
         this.prevMonth = this.prevMonth.bind(this);
         this.getMonth = this.getMonth.bind(this);
         this.createEvent = this.createEvent.bind(this);
-        this.renderRouter = this.renderRouter.bind(this);
 
         // init state
         this.state = {
@@ -68,9 +71,9 @@ class Calendar extends React.Component {
     }
 
     createEvent() {
-        this.setState({
-            isCreating: true
-        })
+        this.props.history.push({
+            pathname: `/calendar`
+        });
     }
 
     calendarSelectDay(selectedDay) {
@@ -92,8 +95,11 @@ class Calendar extends React.Component {
         }
 
         if (this.props.appLCL.selectedDay && !hasSubPate) {
+            const {location, appLCL} = this.props;
+            let newQuery = changeQuery(location.search, {createEvent: true, startDate: appLCL.selectedDay.getTime()});
+
             this.createEventATField = [
-                <Link to={this.state.currentPath + "/createEvent"}>
+                <Link to={`${this.state.currentPath}?${newQuery}`}>
                     <button onClick={this.createEvent} className="rail-trigger">Add Event</button>
                 </Link>
             ]
@@ -125,22 +131,24 @@ class Calendar extends React.Component {
     }
 
     renderCreateEvent(props) {
-        return (
-            <CreateEvent date={this.state.selectedDay} onSubmit={()=> this.setState({isCreating: false})} {...props} />
-        )
-    }
-
-    renderRouter() {
-        return (
-            <Switch>
-            <Route path={this.state.currentPath + "/"} exact render={(props) => <Months {...props}/>} />
-            <Route path={this.state.currentPath + "/createEvent"} render={(props) => this.renderCreateEvent(props)} />
-        </Switch>
-        )
+        const queryParams = queryString.parse(this.props.location.search);
+        
+        if (queryParams.createEvent) {
+            return (
+                <RUIModal>
+                    <CreateEvent
+                        date={this.props.appLCL.selectedDay}
+                        startDate={queryParams.startDate}
+                        onSubmit={()=> this.createEvent()}
+                        {...props} />
+                </RUIModal>
+            )
+        }
     }
 
     componentDidMount() {
         this.setState({ currentPath: this.props.match.url });
+
         this.loadATFields();
         this.loadLCL();
 
@@ -156,7 +164,8 @@ class Calendar extends React.Component {
         return (
             <div>
                 <CalendarContext.Provider value={{...this.state, ...this.props.appLCL}}>
-                    {this.renderRouter()}
+                    <Months />
+                    {this.renderCreateEvent()}
                 </CalendarContext.Provider>
             </div>
         )
@@ -171,7 +180,6 @@ Calendar.initPlugData = () => {
         monthOne: monthOne,
         monthTwo: addMonths(monthOne, 1),
         selectedDay: null,
-        isCreating: false,
         currentPath: ''
     }
 }

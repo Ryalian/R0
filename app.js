@@ -1,10 +1,9 @@
 const express = require('express');
-const bodyParser = require('body-parser');
-
 const app = express();
-let events = [];
-var favicon = require('serve-favicon');
+const bodyParser = require('body-parser');
+const favicon = require('serve-favicon');
 
+const calendarApp = require('./R0/Calendar/index');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -26,15 +25,13 @@ app.get('/getS2Engines', (req, res) => {
   res.send(s2Engines);
 });
 
+let events = [];
 app.get('/eventList', (req, res) => {
   res.send(events)
 })
 
-app.post('/createEvent', (req, res) => {
-  console.log(req.body);
-  events.push(req.body)
-  res.send("event saved");
-});
+calendarApp(app)
+
 
 app.get('*', (req, res) => {
   res.sendFile(__dirname + '/public/index.html'); 
