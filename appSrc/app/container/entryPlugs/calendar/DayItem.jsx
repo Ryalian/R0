@@ -12,9 +12,6 @@ export default class DayItem extends React.Component {
         this.handleClick = this.handleClick.bind(this);
     }
 
-    componentWillReceiveProps() {
-    }
-
     getDayClass() {
         const { date, selectedDay } = this.props;
 
@@ -37,7 +34,7 @@ export default class DayItem extends React.Component {
         const { date, selectedDay } = this.props;
         const isDeselect = isSameDay(date, selectedDay);
 
-        this.props.calendarSelectDay(isDeselect? null : this.props.date);
+        this.props.onSelect(isDeselect? null : this.props.date);
     }
 
     render() {

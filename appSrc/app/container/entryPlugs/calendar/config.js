@@ -3,6 +3,7 @@
  */
 
 export default {
+    name: 'calendar',
     itemWidth: 14,
     itemHeight: 18
 }

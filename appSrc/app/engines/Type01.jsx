@@ -29,8 +29,10 @@ class CoreEngine extends React.Component {
 
     // Life cycle
     componentDidMount() {
-        let selectedPlug = this.findPlug();
-        this.loadPlug(selectedPlug, this.props.location.search);
+        let selectedPlug = this.findPlug(),
+            { location } = this.props;
+
+        this.loadPlug(selectedPlug, location.search, location.pathname);
 
         console.log("Core Engine version: " + this.state.version);
         console.log("Core Engine loaded");
@@ -78,11 +80,11 @@ class CoreEngine extends React.Component {
      * @param {Object} plug Selected plug
      * @param {String} queryString query string for url setup
      */
-    loadPlug(plug, queryString='') {
+    loadPlug(plug, queryString='', pathname=null) {
         const { loadedPlug, setLCLState, history, location } = this.props;
         
         history.push({
-            pathname: `/${plug.name}`,
+            pathname: pathname || `/${plug.name}`,
             search: queryString
         });
         loadedPlug(plug);

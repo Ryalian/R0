@@ -1,7 +1,6 @@
 import React from 'react';
 import DayItem from './DayItem';
 import CalendarHeader from './CalendarHeader';
-import { CalendarContext } from './CalendarContext';
 import { startOfMonth, lastDayOfMonth,addDays, getDate, getDay,getMonth, getYear } from 'date-fns';
 
 const styles = {
@@ -13,8 +12,12 @@ export default class MonthItem extends React.Component {
     constructor(props) {
         super(props);
 
+        this.handleSelectDay = this.handleSelectDay.bind(this)
     }
-    
+
+    handleSelectDay(date) {
+        this.props.onSelect(date);
+    }
 
     renderDays() {
         let days =[],
@@ -32,22 +35,25 @@ export default class MonthItem extends React.Component {
 
         let offsets = getDay(startDayOfMonth);
 
-        return days.map((day, index) => {
+        return days.map((day, idx) => {
                 let dateOfMonth = getDate(day);
 
-                let props = {
+                let dayProps = {
                     dayOffset: {
                         x: (dateOfMonth + offsets - 1) % 7,
                         y: ((dateOfMonth + offsets - 1) / 7) >> 0
                     },
                     date: day,
+                    selectedDay: this.props.selectedDay,
                     dateOfMonth
                 }
 
                 return (
-                    <CalendarContext.Consumer key={index}>
-                        { calendar => (<DayItem {...props} {...calendar}/>) }
-                    </CalendarContext.Consumer>
+                    <DayItem
+                        {...dayProps}
+                        onSelect={this.handleSelectDay}
+                        key={'day_' + idx}
+                        />
                 )
             }
         )
@@ -57,7 +63,9 @@ export default class MonthItem extends React.Component {
         return (
             <div style={styles} className="calendar-month">
                 <CalendarHeader />
-                <div className="calendar-body">{this.renderDays()}</div>
+                <div className="calendar-body">
+                    {this.renderDays()}
+                </div>
             </div>
         )
     }
