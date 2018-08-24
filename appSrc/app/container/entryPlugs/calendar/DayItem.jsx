@@ -34,7 +34,7 @@ export default class DayItem extends React.Component {
         const { date, selectedDay } = this.props;
         const isDeselect = isSameDay(date, selectedDay);
 
-        this.props.onSelect(isDeselect? null : this.props.date);
+        this.props.onSelect(this.props.date);
     }
 
     render() {

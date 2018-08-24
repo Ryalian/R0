@@ -1,6 +1,7 @@
 # Project O
 
 Project O is a personal project to build all kind of fun stuff with a full stack platform. Current stage(Engine) is R0.
+The project will be deployed to [https://twice.live](http://twice.live)
 
 This page is the roadmap of the app. To see how mechanics works, please read [here](./appSrc/app/readme.md)
 
@@ -26,6 +27,7 @@ R0 will be the version below 1.0:
 
   - v0.6 Create home page, make application selectable. Implementation of Router!
   - v0.7 Basic function of core Engine(SOUL!)
+  - Account login, share the app with others :) -Must have :3 
 
 ### v0.7 is *critical* but also *unknown*
 Original plan is scrapped, need to rethink
@@ -39,12 +41,11 @@ After v0.7 R0 is complete! Not so fast...
 > It's the last one in this planet I promise. 
 > Well, hopefully.
 
-### TODO List candidates (Order undecided yet)
+### TODO List candidates (Priority: unknown)
   - Add & remove item (1st thing of course) -Must have
   - Event information(time, location blah, blah) -Must have
   - Alert -Optional
   - Calendar(Absolutely the last thing to work on, I may put it on v10.10.10) -Optional
-  - Account login, share the app with others :) -Must have :3
   
   <!-- below is not decided yet just some thought -->
 ### v2.0.0 *Voting App*
@@ -67,7 +68,7 @@ After v0.7 R0 is complete! Not so fast...
 # v3.0 *Data mining and Core Engine update* Engine R2
 v3.0 will be a backend update for data analising. So far all the developments are based on front end. To improve the UX and data value, certain level of data mining is required. Also, the core of this project is Core Engine. I should update it to at lease Chatbot level and evolve to AI in the future.
 
-# v4.0 *Video Player*
+# v4.0 *Video Function*
 This is my most desired project! Only reason putting it to v4.0 is because it will cost a lot(T T). There will be a version system of this app based on the comment voting system so everyone can branch out the original version and create their own topic. This app will also contains a lot of editing functions. It's where action engine shines. The function here will out run youtube if they are still not moving forward. This is also the stage where I would start exploring opportunity to create profit(depend on how many user I have, I expect 10).
 
 Everything TBD but:

@@ -9,7 +9,8 @@ export default class RInput extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="RInput">
+                <label>{this.props.inputLabel}</label>
                 <input value={this.props.value} onChange={this.props.onChange} />
             </div>
         )

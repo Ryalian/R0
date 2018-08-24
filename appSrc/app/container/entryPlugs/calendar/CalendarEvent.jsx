@@ -7,6 +7,7 @@ import { getFormattedDate } from "../../../util";
 
 import RInput from '../../../components/RInput';
 import DatePicker from "./DatePicker";
+import ImageUploader from "./ImageUploader";
 import config from "./config";
 
 export default class CalendarEvent extends React.Component {
@@ -19,14 +20,18 @@ export default class CalendarEvent extends React.Component {
         this.handleContentChange = this.handleContentChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
 
-        this.queryParams = queryString.parse(this.props.location.search);
         this.currentPath = this.props.match.url;
 
+        let {startDate, endDate} = queryString.parse(this.props.location.search);
+        // if there's startDay, set endDate to startDate
+        endDate = endDate || startDate;
         this.state = {
             title: "",
-            startDate:  new Date(+this.queryParams.startDate) || new Date(),
+            startDate: startDate? new Date(+startDate) : new Date(),
+            endDate:  endDate? new Date(+endDate) : new Date(),
             content: "",
-            modifyStartDay: false
+            modifyStartDay: false,
+            modifyEndDay: false
         }
     }
 
@@ -68,10 +73,14 @@ export default class CalendarEvent extends React.Component {
         this.props.pushAppTask({
             type: 'SET_LCL',
             content: [
-                <span>
+                (<span>
                     <div>From:</div>
                     <div onClick={()=>{ this.setState({modifyStartDay: true})}}>{`${getFormattedDate(this.state.startDate)}`}</div>
-                </span>
+                </span>),
+                (<span>
+                    <div>To:</div>
+                    <div onClick={()=>{ this.setState({modifyEndDay: true})}}>{`${getFormattedDate(this.state.endDate)}`}</div>
+                </span>)
             ]
         });
     }
@@ -113,6 +122,7 @@ export default class CalendarEvent extends React.Component {
                     onSelect={(date)=> {
                         this.setState({
                             modifyStartDay:false,
+                            modifyEndDay:false,
                             startDate: date
                             })
                         }
@@ -120,13 +130,24 @@ export default class CalendarEvent extends React.Component {
                     selectedDay={this.state.startDate}
                 />
                 }
-                <div>
-                    <label>Title: </label> <RInput value={this.state.title} onChange={this.handleTitleChange}/>
-                </div>
+                {this.state.modifyEndDay
+                && <DatePicker 
+                    onSelect={(date)=> {
+                        this.setState({
+                            modifyEndDay:false,
+                            modifyStartDay:false,
+                            endDate: date
+                            })
+                        }
+                    }
+                    selectedDay={this.state.endDate}
+                />
+                }
 
-                <div>
-                    <label>Content: </label> <RInput value={this.state.content} onChange={this.handleContentChange}/>
-                </div>
+                <RInput value={this.state.title} inputLabel={"Title"} onChange={this.handleTitleChange}/>
+                <RInput value={this.state.content} inputLabel={"Content"} onChange={this.handleContentChange}/>
+
+                <ImageUploader />
             </div>
         )
     }

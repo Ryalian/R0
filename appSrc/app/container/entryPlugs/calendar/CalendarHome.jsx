@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { addMonths, isThisSecond } from 'date-fns';
+import { addMonths, isSameDay } from 'date-fns';
 
 import LCLMonthInfo from "./LCLMonthInfo";
 
@@ -40,10 +40,13 @@ export default class CalendarHome extends React.Component {
     }
 
     calendarSelectDay(selectedDay) {
+        console.log(this.props)
+        let isCancelSelected = isSameDay(this.props.appLCL.selectedDay, selectedDay);
+
         this.props.pushAppTask({
             type: 'UPDATE_APP_DATA',
             content: {
-                selectedDay: selectedDay
+                selectedDay: isCancelSelected? null :  selectedDay
             }
         });
     }
