@@ -6,17 +6,22 @@ export default class MonthContainer extends React.Component {
         super(props);
     }
 
+    componentDidUpdate() {
+
+    }
+
     render() {
         let { appLCL, onSelect } = this.props;
 
         return (
-            <div>
+            <React.Fragment>
                 <MonthItem
-                    month={appLCL.monthOne}
+                    month={appLCL.currentMonth}
                     selectedDay={appLCL.selectedDay}
                     onSelect={onSelect}
+                    {...this.props}
                     />
-            </div>
+            </React.Fragment>
         )
     }
 }

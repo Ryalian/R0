@@ -28,7 +28,7 @@ R0 will be the version below 1.0:
   - v0.6 Create home page, make application selectable. Implementation of Router!
   - v0.7 Basic function of core Engine(SOUL!)
   - Account login, share the app with others :) -Must have :3 
-
+EXTRA: make content alive! poping content! *****
 ### v0.7 is *critical* but also *unknown*
 Original plan is scrapped, need to rethink
  

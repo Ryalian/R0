@@ -31,10 +31,7 @@ export default class DayItem extends React.Component {
     }
 
     handleClick() {
-        const { date, selectedDay } = this.props;
-        const isDeselect = isSameDay(date, selectedDay);
-
-        this.props.onSelect(this.props.date);
+        this.props.onSelect(this.props.date, this.props.events);
     }
 
     render() {
@@ -43,6 +40,7 @@ export default class DayItem extends React.Component {
                 className={this.getDayClass()}
                 onClick={this.handleClick}>
                 {this.props.dateOfMonth}
+                {this.props.events.map((event, idx) => (<div key={'event' + idx}>{event.title}</div>))}
             </span>
         )
     }

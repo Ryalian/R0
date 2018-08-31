@@ -1,8 +1,13 @@
 const Calendar = (app) => {
   let events = [
-    {time: 1533526619165, title: 'task 1', content: 'test 1'},
-    {time: 1534526619165, title: 'task 2', content: 'test 2'},
-    {time: 1543526619165, title: 'task 3', content: 'test 3'},
+    {
+      "title": "Phats",
+      "startDate": 1535439600000,
+      "endDate": 1535439600000,
+      "description": "Lube are phat",
+      "modifyStartDay": false,
+      "modifyEndDay": false
+    }
   ];
 
   app.get('/api/calendar', (req, res) => {
@@ -13,7 +18,7 @@ const Calendar = (app) => {
     res.send(calendarTasks);
   });
 
-  app.post('/api/calendar/createEvent', (req, res) => {
+  app.post('/api/calendar/configEvent', (req, res) => {
     console.log(req.body);
     events.push(req.body);
     res.send({

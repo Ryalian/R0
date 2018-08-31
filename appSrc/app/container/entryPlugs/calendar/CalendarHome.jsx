@@ -1,10 +1,11 @@
 import React from "react";
+import axios from 'axios';
 import { Link } from "react-router-dom";
 import { addMonths, isSameDay } from 'date-fns';
 
 import LCLMonthInfo from "./LCLMonthInfo";
 
-import { changeQuery } from "../../../util";
+import { changeQuery, isEventInMonth } from "../../../util";
 import Months from './MonthContainer';
 import config from "./config";
 
@@ -25,11 +26,22 @@ export default class CalendarHome extends React.Component {
         ];
 
         this.state ={
-            currentPath: this.props.match.url
+            currentPath: this.props.match.url,
+            currentMonthEvent: [],
+            loadedLCL: []
         }
     }
 
     componentDidMount() {
+        axios.get('/api/calendar')
+            .then(({data}) => {
+                let currentMonthEvent = data.events.filter(event => {
+                    return isEventInMonth(this.props.appLCL.currentMonth, event.startDate, event.endDate);
+                })
+
+                this.setState({ currentMonthEvent });
+            });
+
         this.loadLCL();
         this.loadATFields();
     }
@@ -39,10 +51,21 @@ export default class CalendarHome extends React.Component {
         this.loadATFields();
     }
 
-    calendarSelectDay(selectedDay) {
-        console.log(this.props)
+    calendarSelectDay(selectedDay, selectedDayEvents) {
         let isCancelSelected = isSameDay(this.props.appLCL.selectedDay, selectedDay);
 
+        this.setState({
+            loadedLCL: isCancelSelected? [] 
+                : selectedDayEvents.map(event => {
+                    let newQuery = changeQuery(location.search, {eventId:event.id});
+                    return (
+                        <Link to={`${this.state.currentPath}/configEvent?${newQuery}`}>
+                            <div>{event.title}</div>
+                        </Link>
+                    )
+                })
+        })
+        
         this.props.pushAppTask({
             type: 'UPDATE_APP_DATA',
             content: {
@@ -52,25 +75,23 @@ export default class CalendarHome extends React.Component {
     }
 
     nextMonth() {
-        const {monthOne, monthTwo} = this.props.appLCL;
+        const {currentMonth} = this.props.appLCL;
 
         this.props.pushAppTask({
             type: 'UPDATE_APP_DATA',
             content: {
-                monthOne: addMonths(monthOne, 1),
-                monthTwo: addMonths(monthTwo, 1)
+                currentMonth: addMonths(currentMonth, 1)
             }
         });
     }
 
     prevMonth() {
-        const {monthOne, monthTwo} = this.props.appLCL;
+        const {currentMonth} = this.props.appLCL;
 
         this.props.pushAppTask({
             type: 'UPDATE_APP_DATA',
             content: {
-                monthOne: addMonths(monthOne, -1),
-                monthTwo: addMonths(monthTwo, -1)
+                currentMonth: addMonths(currentMonth, -1)
             }
         })
     }
@@ -87,12 +108,12 @@ export default class CalendarHome extends React.Component {
             const {location, appLCL} = this.props;
             let newQuery = changeQuery(location.search, {startDate: appLCL.selectedDay.getTime()});
 
-            this.createEventATField = [
-                <Link to={`${this.state.currentPath}/createEvent?${newQuery}`}>
+            this.configEventATField = [
+                <Link to={`${this.state.currentPath}/configEvent?${newQuery}`}>
                     <button className="rail-trigger">Add Event</button>
                 </Link>
             ]
-            ATFields = [...ATFields, ...this.createEventATField];
+            ATFields = [...ATFields, ...this.configEventATField];
         }
 
         this.props.pushAppTask({
@@ -107,17 +128,19 @@ export default class CalendarHome extends React.Component {
     }
 
     loadLCL() {
+        let LCL = [<LCLMonthInfo month={this.props.appLCL.currentMonth}/>, ...this.state.loadedLCL];
+
         this.props.pushAppTask({
             type: 'SET_LCL',
             content: [
-                <LCLMonthInfo month={this.props.appLCL.monthOne}/>
+                ...LCL
             ]
         });
     }
 
     render() {
         return (
-            <Months onSelect={this.calendarSelectDay} {...this.props}/>
+            <Months onSelect={this.calendarSelectDay} {...this.props} events={this.state.currentMonthEvent}/>
         )
     }
 }

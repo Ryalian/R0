@@ -29,7 +29,7 @@ export default class DatePicker extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="calendar-date-picker">
                 <div>
                     <button onClick={() => this.changeMonth(-1)}>{'<'}</button>
                     {getFormattedMonth(this.state.month)}

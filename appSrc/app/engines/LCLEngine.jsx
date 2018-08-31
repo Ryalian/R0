@@ -21,7 +21,7 @@ class LCLEngine extends React.Component {
         // Not doing it yet because react is not actually rerendering
         const LCL = [<div>fetching...</div>];
         return this.props.LCL.map((lcl, idx) => (
-                    <span key={'LCL_' + idx}>{lcl}</span>
+                    <span key={'LCL_' + idx} className={"LCLItem"}>{lcl}</span>
                 ))
     }
 

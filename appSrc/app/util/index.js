@@ -1,5 +1,5 @@
 import { parse as parseQuery, stringify as stringifyQuery } from "query-string";
-import { getDate, getMonth, getYear } from "date-fns";
+import { getDate, getMonth, getYear, addMonths } from "date-fns";
 
 export const changeQuery = (queryString, params) => {
     let queryParams = parseQuery(queryString) || {};
@@ -33,4 +33,14 @@ export const getFormattedMonth = (timeStamp) => {
         y = getYear(date)
 
     return `${MONTH_LIST[m]} ${y}`;
+}
+
+export const isEventInMonth = (monthStart, startDate, endDate) => {
+    const monthEnd = addMonths(monthStart, 1);
+    
+    return endDate >= monthStart && startDate < monthEnd;
+}
+
+export const isEventInDay = (date, startDate, endDate) => {
+    return (date >= startDate) && (date <= endDate);
 }

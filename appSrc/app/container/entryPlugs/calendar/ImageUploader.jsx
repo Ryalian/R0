@@ -19,7 +19,6 @@ export default class ImageUploader extends React.Component {
     componentDidMount() {
         axios.get('/api/getImagesList')
             .then(({data}) => {
-                console.log(data)
                 this.setState({
                     uploadedList: data.items
                 })

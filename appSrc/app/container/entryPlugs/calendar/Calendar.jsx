@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Switch } from "react-router-dom";
-import { addMonths } from 'date-fns';
+import { startOfMonth } from 'date-fns';
 
 import { connect } from 'react-redux';
 import { pushAppTask } from "../../../actions";
@@ -36,10 +36,10 @@ class Calendar extends React.Component {
         const { match } = this.props;
         
         return (
-            <div>
+            <React.Fragment>
                 <Switch>
                     <Route 
-                        path={`${match.url}/createEvent`}
+                        path={`${match.url}/configEvent`}
                         render={(props) => <CalendarEvent {...this.props}/>}
                     />
                     <Route
@@ -48,18 +48,17 @@ class Calendar extends React.Component {
                         render={(props) => <CalendarHome {...this.props}/>}
                     />
                 </Switch>
-            </div>
+            </React.Fragment>
         )
     }
 
 }
 
 Calendar.initPlugData = () => {
-    let monthOne = new Date()
+    let currentMonth = startOfMonth(new Date());
 
     return {
-        monthOne: monthOne,
-        monthTwo: addMonths(monthOne, 1),
+        currentMonth: currentMonth,
         selectedDay: null
     }
 }

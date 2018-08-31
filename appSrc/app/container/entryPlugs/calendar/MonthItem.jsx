@@ -1,7 +1,9 @@
 import React from 'react';
+import { startOfMonth, lastDayOfMonth,addDays, getDate, getDay,getMonth, getYear } from 'date-fns';
+
+import { isEventInDay } from "../../../util";
 import DayItem from './DayItem';
 import CalendarHeader from './CalendarHeader';
-import { startOfMonth, lastDayOfMonth,addDays, getDate, getDay,getMonth, getYear } from 'date-fns';
 
 const styles = {
     "position": "relative",
@@ -15,8 +17,8 @@ export default class MonthItem extends React.Component {
         this.handleSelectDay = this.handleSelectDay.bind(this)
     }
 
-    handleSelectDay(date) {
-        this.props.onSelect(date);
+    handleSelectDay(date, events) {
+        this.props.onSelect(date, events);
     }
 
     renderDays() {
@@ -25,7 +27,8 @@ export default class MonthItem extends React.Component {
             startDayOfMonth = startOfMonth(selectedMonth),
             endDayOfMonth = lastDayOfMonth(selectedMonth),
             pivot = new Date(startDayOfMonth.getTime()),
-            timer = 0;
+            timer = 0,
+            events = this.props.events || [];// TODO, this should be implemented with redux
 
         while(pivot.getTime() <= endDayOfMonth.getTime() && timer < 31) {
             days.push(pivot);
@@ -36,27 +39,29 @@ export default class MonthItem extends React.Component {
         let offsets = getDay(startDayOfMonth);
 
         return days.map((day, idx) => {
-                let dateOfMonth = getDate(day);
+            
+            let dateOfMonth = getDate(day),
+                eventsInDay = events.filter(event => isEventInDay(day, event.startDate, event.endDate));
 
-                let dayProps = {
-                    dayOffset: {
-                        x: (dateOfMonth + offsets - 1) % 7,
-                        y: ((dateOfMonth + offsets - 1) / 7) >> 0
-                    },
-                    date: day,
-                    selectedDay: this.props.selectedDay,
-                    dateOfMonth
-                }
-
-                return (
-                    <DayItem
-                        {...dayProps}
-                        onSelect={this.handleSelectDay}
-                        key={'day_' + idx}
-                        />
-                )
+            let dayProps = {
+                dayOffset: {
+                    x: (dateOfMonth + offsets - 1) % 7,
+                    y: ((dateOfMonth + offsets - 1) / 7) >> 0
+                },
+                date: day,
+                selectedDay: this.props.selectedDay,
+                dateOfMonth,
+                events: eventsInDay
             }
-        )
+
+            return (
+                <DayItem
+                    {...dayProps}
+                    onSelect={this.handleSelectDay}
+                    key={'day_' + idx}
+                    />
+            )
+        })
     }
 
     render() {

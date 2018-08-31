@@ -6,9 +6,15 @@ import { Link } from "react-router-dom";
 import { getFormattedDate } from "../../../util";
 
 import RInput from '../../../components/RInput';
+import RTextArea from '../../../components/RTextArea';
 import DatePicker from "./DatePicker";
 import ImageUploader from "./ImageUploader";
 import config from "./config";
+
+
+const DISPLAY_CONTENT_FORM = 'DISPLAY_CONTENT_FORM',
+    DISPLAY_CONTENT_START_DATE = 'DISPLAY_CONTENT_START_DATE',
+    DISPLAY_CONTENT_END_DATE = 'DISPLAY_CONTENT_END_DATE';
 
 export default class CalendarEvent extends React.Component {
     constructor(props) {
@@ -17,27 +23,40 @@ export default class CalendarEvent extends React.Component {
         this.loadATFields = this.loadATFields.bind(this);
         this.loadLCL = this.loadLCL.bind(this);
         this.handleTitleChange = this.handleTitleChange.bind(this);
-        this.handleContentChange = this.handleContentChange.bind(this);
+        this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.loadEvent = this.loadEvent.bind(this);
+        this.renderForm = this.renderForm.bind(this);
+        this.renderImagePicker = this.renderImagePicker.bind(this);
+        this.renderDatePicker = this.renderDatePicker.bind(this);
+        this.renderContent = this.renderContent.bind(this);
 
         this.currentPath = this.props.match.url;
 
-        let {startDate, endDate} = queryString.parse(this.props.location.search);
+        let query = queryString.parse(this.props.location.search);
+
+        let {startDate, endDate} = query;
         // if there's startDay, set endDate to startDate
         endDate = endDate || startDate;
         this.state = {
             title: "",
             startDate: startDate? new Date(+startDate) : new Date(),
             endDate:  endDate? new Date(+endDate) : new Date(),
-            content: "",
+            description: "",
+            displayContent: DISPLAY_CONTENT_FORM,
             modifyStartDay: false,
-            modifyEndDay: false
+            modifyEndDay: false,
+            id: null,
+            query
         }
     }
 
     componentDidMount() {
         this.loadATFields();
         this.loadLCL();
+        if(this.state.query.eventId) {
+            this.loadEvent();
+        }
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -45,6 +64,18 @@ export default class CalendarEvent extends React.Component {
             this.loadATFields();
             this.loadLCL();
         }
+    }
+
+    loadEvent() {
+        axios.get('/api/calendar')
+            .then(({data}) => {
+                let selectedEvent = data
+                                    .events
+                                    .find(event => event.id === +this.state.query.eventId);
+                this.setState({
+                    ...selectedEvent
+                })
+            })
     }
 
     loadATFields() {
@@ -73,16 +104,64 @@ export default class CalendarEvent extends React.Component {
         this.props.pushAppTask({
             type: 'SET_LCL',
             content: [
-                (<span>
+                (<React.Fragment>
                     <div>From:</div>
-                    <div onClick={()=>{ this.setState({modifyStartDay: true})}}>{`${getFormattedDate(this.state.startDate)}`}</div>
-                </span>),
-                (<span>
+                    <div onClick={()=>{ this.setState({displayContent: DISPLAY_CONTENT_START_DATE})}}>
+                        {`${getFormattedDate(this.state.startDate)}`}
+                    </div>
+                </React.Fragment>),
+                (<React.Fragment>
                     <div>To:</div>
-                    <div onClick={()=>{ this.setState({modifyEndDay: true})}}>{`${getFormattedDate(this.state.endDate)}`}</div>
-                </span>)
+                    <div onClick={()=>{ this.setState({displayContent: DISPLAY_CONTENT_END_DATE})}}>
+                        {`${getFormattedDate(this.state.endDate)}`}
+                    </div>
+                </React.Fragment>)
             ]
         });
+    }
+
+    renderForm() {
+        //TODO: Use div
+        return (
+            <React.Fragment>
+                <RInput value={this.state.title} inputLabel={"Title"} onChange={this.handleTitleChange}/>
+                <RTextArea value={this.state.description} inputLabel={"Description"} onChange={this.handleDescriptionChange}/>
+            </React.Fragment>
+        )
+    }
+
+    renderImagePicker() {
+        return (<ImageUploader />)
+    }
+
+    renderDatePicker(selectedPicker) {
+        let handleSelect = date => {
+            this.setState({
+                displayContent: DISPLAY_CONTENT_FORM,
+                [selectedPicker]: date
+            });
+        }
+        return (
+            <DatePicker
+                selectedDay={this.state[selectedPicker]}
+                onSelect={handleSelect}
+            />)
+    }
+
+    renderContent() {
+        switch (this.state.displayContent) {
+            case DISPLAY_CONTENT_FORM:
+                return this.renderForm();
+
+            case DISPLAY_CONTENT_START_DATE:
+                return this.renderDatePicker('startDate');
+
+            case DISPLAY_CONTENT_END_DATE:
+                return this.renderDatePicker('endDate');
+
+            default:
+                return this.renderForm();
+        }
     }
 
     handleTitleChange(event) {
@@ -91,19 +170,22 @@ export default class CalendarEvent extends React.Component {
         })
     }
 
-    handleContentChange(event) {
+    handleDescriptionChange(event) {
         this.setState({
-            content: event.target.value
+            description: event.target.value
         })
     }
 
     handleSubmit() {
+        const { startDate, endDate } = this.state;
         let payload = {
             ...this.state,
-            time: getTime(this.state.startDate) || 0
+            startDate: startDate? getTime(startDate) : new Date(),
+            endDate:  endDate? getTime(endDate)  : new Date(),
+            id: Math.random() * 100000000 >> 0
         }
 
-        axios.post('/api/calendar/createEvent', payload)
+        axios.post('/api/calendar/configEvent', payload)
             .then(({data}) => {
                 console.log(data)
             });
@@ -116,38 +198,8 @@ export default class CalendarEvent extends React.Component {
     render() {
 
         return (
-            <div className="calendar-create-event">
-                {this.state.modifyStartDay
-                && <DatePicker 
-                    onSelect={(date)=> {
-                        this.setState({
-                            modifyStartDay:false,
-                            modifyEndDay:false,
-                            startDate: date
-                            })
-                        }
-                    }
-                    selectedDay={this.state.startDate}
-                />
-                }
-                {this.state.modifyEndDay
-                && <DatePicker 
-                    onSelect={(date)=> {
-                        this.setState({
-                            modifyEndDay:false,
-                            modifyStartDay:false,
-                            endDate: date
-                            })
-                        }
-                    }
-                    selectedDay={this.state.endDate}
-                />
-                }
-
-                <RInput value={this.state.title} inputLabel={"Title"} onChange={this.handleTitleChange}/>
-                <RInput value={this.state.content} inputLabel={"Content"} onChange={this.handleContentChange}/>
-
-                <ImageUploader />
+            <div className="calendar-config-event">
+                { this.renderContent() }
             </div>
         )
     }
