@@ -21,6 +21,7 @@ export const loadedPlug = (value = React.Fragment) => dispatch => {
 }
 
 export const setLCLState = (value) => dispatch => {
+    // TODO: avoid reset if LCL already exist
     dispatch({
         type: SET_APP_DATA,
         payload: value

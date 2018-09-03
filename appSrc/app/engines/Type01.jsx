@@ -82,9 +82,10 @@ class CoreEngine extends React.Component {
      */
     loadPlug(plug, queryString='', pathname=null) {
         const { loadedPlug, setLCLState, history, location } = this.props;
+        console.log(plug)
         
         history.push({
-            pathname: pathname || `/${plug.name}`,
+            pathname: pathname !== '/' ? pathname : `/${plug.name}`,
             search: queryString
         });
         loadedPlug(plug);

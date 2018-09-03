@@ -5,9 +5,20 @@
     .image-upload-gallery, .image-selected-gallery {
         height:200px;
     
-        img {
-            max-height: 200px;
-            max-width: 200px;
-        }
+    }
+}
+
+img {
+    max-height: 200px;
+    max-width: 200px;
+}
+.selectable-image {
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    display: inline-block;
+
+    &.selected-image {
+        border: 1px solid black;
     }
 }

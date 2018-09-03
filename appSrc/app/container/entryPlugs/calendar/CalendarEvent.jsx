@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import queryString from "query-string";
+import ExifOrientationImg from "react-exif-orientation-img";
 import { getTime } from "date-fns";
 import { Link } from "react-router-dom";
 import { getFormattedDate } from "../../../util";
@@ -8,11 +9,12 @@ import { getFormattedDate } from "../../../util";
 import RInput from '../../../components/RInput';
 import RTextArea from '../../../components/RTextArea';
 import DatePicker from "./DatePicker";
-import ImageUploader from "./ImageUploader";
+import ImageSelector from "./ImageSelector";
 import config from "./config";
 
 
 const DISPLAY_CONTENT_FORM = 'DISPLAY_CONTENT_FORM',
+    DISPLAY_CONTENT_SELECT_IMAGE = 'DISPLAY_CONTENT_SELECT_IMAGE',
     DISPLAY_CONTENT_START_DATE = 'DISPLAY_CONTENT_START_DATE',
     DISPLAY_CONTENT_END_DATE = 'DISPLAY_CONTENT_END_DATE';
 
@@ -46,6 +48,7 @@ export default class CalendarEvent extends React.Component {
             displayContent: DISPLAY_CONTENT_FORM,
             modifyStartDay: false,
             modifyEndDay: false,
+            selectedImages: [],
             id: null,
             query
         }
@@ -126,6 +129,13 @@ export default class CalendarEvent extends React.Component {
             <React.Fragment>
                 <RInput value={this.state.title} inputLabel={"Title"} onChange={this.handleTitleChange}/>
                 <RTextArea value={this.state.description} inputLabel={"Description"} onChange={this.handleDescriptionChange}/>
+
+                {this.state.selectedImages.map((image, idx) => <ExifOrientationImg key={idx} src={image.src}/>)}
+                <button
+                    className={"RButton-lg"}
+                    onClick={()=>{this.setState({displayContent: DISPLAY_CONTENT_SELECT_IMAGE})}}>
+                    +
+                </button>
             </React.Fragment>
         )
     }
@@ -158,6 +168,12 @@ export default class CalendarEvent extends React.Component {
 
             case DISPLAY_CONTENT_END_DATE:
                 return this.renderDatePicker('endDate');
+
+            case DISPLAY_CONTENT_SELECT_IMAGE:
+                return <ImageSelector
+                            onclose={()=> this.setState({displayContent: DISPLAY_CONTENT_FORM})}
+                            onSubmit={(imagesList) => this.setState({selectedImages: imagesList})}
+                            />;
 
             default:
                 return this.renderForm();

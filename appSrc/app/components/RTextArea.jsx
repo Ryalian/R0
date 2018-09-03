@@ -8,7 +8,7 @@ export default class RTextArea extends React.Component {
 
     render() {
         return (
-            <div className="RInput">
+            <div className="RInput RTextArea">
                 <label>{this.props.inputLabel}</label>
                 <textarea value={this.props.value} onChange={this.props.onChange} />
             </div>

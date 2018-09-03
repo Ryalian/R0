@@ -1,7 +1,7 @@
 .RInput {
     width: 80%;
     max-width: 500px;
-    height: 70px;
+    height: auto;
     margin: 15px;
     padding: 0 0 0 15px;
     position: relative;
@@ -15,7 +15,7 @@
 
     input, textarea {
         width: 100%;
-        padding: 0 0 0 25px;
+        padding: 0 0 0 15px;
         border: 0 solid;
         background-color: rgba(0, 0, 0, 0.1);
         transform: translate(5px, 12px);
@@ -26,4 +26,25 @@
         color: #888;
         box-sizing: border-box;
     }
+}
+
+.RTextArea {
+    height: auto;
+    
+    textarea {
+        resize: none;
+        padding: 10px;
+        font-size: 14px;
+        line-height: 2;
+        min-height: 120px;
+    }
+}
+
+.RButton-lg {
+    width: 64px;
+    line-height: 64px;
+    padding: 0;
+    font-size: 64px;
+    font-weight: lighter;
+    border: none;
 }

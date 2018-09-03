@@ -7,7 +7,7 @@ export default class ImageUploader extends React.Component {
         super(props);
 
         this.handleSelect = this.handleSelect.bind(this);
-        this.handleSave = this.handleSave.bind(this);
+        this.handleUpload = this.handleUpload.bind(this);
 
         this.state = {
             uploadImagesList: [],
@@ -17,12 +17,6 @@ export default class ImageUploader extends React.Component {
     }
 
     componentDidMount() {
-        axios.get('/api/getImagesList')
-            .then(({data}) => {
-                this.setState({
-                    uploadedList: data.items
-                })
-            })
     }
 
     handleSelect(event) {
@@ -33,7 +27,7 @@ export default class ImageUploader extends React.Component {
         })
     }
 
-    handleSave() {
+    handleUpload() {
         let imageData = new FormData();
         // this.state.imagesList.forEach()
         imageData.append('file', this.state.uploadImagesList[0], this.state.uploadImagesList[0].name)
@@ -51,14 +45,6 @@ export default class ImageUploader extends React.Component {
     render() {
         return(
             <div className={"image-uploader"}>
-                {/* Server Images List */}
-                <div className="image-selected-gallery">
-                    {
-                        this.state.uploadedList.map(
-                            (image, idx) => <ExifOrientationImg src={image} key={`image_${idx}`}/>
-                        )
-                    }
-                </div>
                 {/* Uploaded images list */}
                 <div className="image-selected-gallery">
                     {
@@ -68,7 +54,7 @@ export default class ImageUploader extends React.Component {
                     }
                 </div>
                 {/* Upload image button */}
-                {this.state.uploadImagesList.length? <button onClick={this.handleSave}>Save</button> : null}
+                {this.state.uploadImagesList.length? <button onClick={this.handleUpload}>Save</button> : null}
                 <label htmlFor="upload-input">
                     <span>Select Upload Image</span>
                 </label>
