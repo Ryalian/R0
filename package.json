@@ -5,10 +5,16 @@
   "main": "index.js",
   "scripts": {
     "watch": "cp -R appSrc/images public/ && cp appSrc/index.html public/index.html && webpack -d",
-    "prod": "cp -R appSrc/images public/ && cp appSrc/index.html public/index.html && NODE_ENV=production webpack -p"
+    "prod": "cp -R appSrc/images public/ && cp appSrc/index.html public/index.html && --mode production webpack -p"
   },
   "author": "",
   "license": "ISC",
+  "babel": {
+    "presets": [
+      "@babel/preset-env",
+      "@babel/preset-react"
+    ]
+  },
   "dependencies": {
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
@@ -28,17 +34,22 @@
     "serve-favicon": "^2.5.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.1.6",
+    "@babel/preset-env": "^7.1.6",
+    "@babel/preset-react": "^7.0.0",
     "autoprefixer-loader": "^3.2.0",
-    "babel-core": "^6.26.3",
-    "babel-loader": "^6.4.1",
+    "babel": "^6.23.0",
+    "babel-loader": "^8.0.4",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
-    "css-loader": "^0.25.0",
+    "css-loader": "^1.0.1",
     "flightplan": "^0.6.14",
-    "less": "^2.7.3",
-    "less-loader": "^2.2.3",
-    "style-loader": "^0.13.2",
-    "webpack": "^1.15.0"
+    "less": "^3.8.1",
+    "less-loader": "^4.1.0",
+    "postcss-loader": "^3.0.0",
+    "style-loader": "^0.23.1",
+    "webpack": "^4.26.0",
+    "webpack-cli": "^3.1.2"
   }
 }

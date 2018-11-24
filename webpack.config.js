@@ -15,24 +15,25 @@ var config = {
         publicPath: "/app/"
     },
     resolve: {
-        modulesDirectories: ['node_modules', './app'],
-        extensions: ['', '.js', '.jsx']
+        modules: ['node_modules', './app'],
+        extensions: ['.js', '.jsx']
     },
     module: {
-        loaders: [
+        rules: [
             // ES6 & up
             {
                 test: /\.js?/,
                 include: SRC_DIR,
-                loader: "babel-loader",
-                query: {
-                    presets: ["react", "es2015", "stage-2"]
-                }
+                use: "babel-loader"
             },
             // LESS
             {
                 test: /\.less$/,
-                loader: "style!css!autoprefixer!less"
+                use: [
+                    "style-loader",
+                    "css-loader",
+                    "postcss-loader",
+                    "less-loader"]
             },
         ]
     },

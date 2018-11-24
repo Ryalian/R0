@@ -81,8 +81,7 @@ class CoreEngine extends React.Component {
      * @param {String} queryString query string for url setup
      */
     loadPlug(plug, queryString='', pathname=null) {
-        const { loadedPlug, setLCLState, history, location } = this.props;
-        console.log(plug)
+        const { loadedPlug, setLCLState, history } = this.props;
         
         history.push({
             pathname: pathname !== '/' ? pathname : `/${plug.name}`,
