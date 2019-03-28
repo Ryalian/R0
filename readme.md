@@ -1,8 +1,22 @@
 # Project O
 
-Project O is a personal project to build all kind of fun stuff with a full stack platform. Current stage(Engine) is R0.
+Project O is a personal project as an experiment of the structure I call AI centered development method. Current stage(Engine) is R0.
 The project will be deployed to [https://twice.live](http://twice.live)
 
+### What is AI centered development(AICD) structure?
+AICD structure is still in a very elementary stage as a development theory. A lot of components of the structure still need to be complete.
+
+The basic idea of this structure is: An application will includes many small widgets call EntryPlug(EP). An EntryPlus work as a the most basic functional block in the structure. Just like a regular widget, EP contains display content(as DiracSea), data state(as LCL Engine) and actions(as AT Field). The difference between a regular app structure(such as MVC) and AICD structure is that in AICD, widget(EP) will not interact just within itself. Instead, it will send an request to the Control Engine in the top application level. Control Engine will then process and decide the next action about what should happen. During this process, Control Engine can decide to run the default logic of EP or do additional actions according other constrains(*). After processing in Control Engine, it will then return a command to EP and update content and data state.
+
+The puporse of this structure is to add a super control layer across all widget. This enables the application to modify the widget according to higher level algorithm. As the name indicates, this is ultimately designed for AI as the Control Engine. With this structure, AI can decide what to record modify and display. It also makes it possible to chain different widget together as Control Engine takes care of all the EPs. Because all the actions go through Control Engine, if we have a AI Control Engine, theoretically the application can evolves on it own without much client code update as machine learning continues. For example: we have a video EP and a calendar EP. According to the events added to the calendar, if user adds a lot of sport related tasks, the video EP will gives more sport related recommendations or insert a mini version of video into the calendar(which doesn't necessary need to be design specifically possible for video, but just a insertable component). Another use case for the AICD structure is to smartly change the content or even UI style of the widget or even the whole application. For example, if the AI evolve enough to the point that it can tell the user's personality, it can change the color and the shape of the UI accordingly. Ultimately, the application can generate UI components to assist user to better solve problems. That is, the basic design method when making an EP is to: 1, create a basic puropse widget; 2, create a UI module with general-purpose-block(GPB) that allows external components to insert to. 3. make a mini version components that could be fit into a GPB. 4. sends all the user behaviors to the Control Engine for it to process.
+
+Above is the basic idea of AICD structure. One thing to mention is: the above is mainly focus on the client side. There can be multiple super control layers(SCL). For example: there could be "CLIENT SCL" => "USER SCL" => "REGIONAL SCL" => "SUPREME SCL" ETC. These will need a bit more thoughts and knowledge.
+
+This structure is to solve the problem that the AI usage nowaday is still stuck on data level or system assistant level. There's no connection thourgh out the whole computational structure. This structure will connects "user demand", "application", "data" and "system" all together.
+
+Send me an email if you read this and have any thoughts: ryalianese@gmail.com
+
+************************************
 This page is the roadmap of the app. To see how mechanics works, please read [here](./appSrc/app/readme.md)
 
 R0 will be the version below 1.0:
