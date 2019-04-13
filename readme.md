@@ -1,7 +1,7 @@
 # Project O
 
 Project O is a personal project as an experiment of the structure I call AI centered development method. Current stage(Engine) is R0.
-The project will be deployed to [https://twice.live](http://twice.live)
+The project will be deployed to [https://twice.live](https://twice.live)
 
 ### What is AI centered development(AICD) structure?
 AICD structure is still in a very elementary stage as a development theory. A lot of components of the structure still need to be complete.
