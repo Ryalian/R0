@@ -130,12 +130,12 @@ export default class CalendarEvent extends React.Component {
                 <RInput value={this.state.title} inputLabel={"Title"} onChange={this.handleTitleChange}/>
                 <RTextArea value={this.state.description} inputLabel={"Description"} onChange={this.handleDescriptionChange}/>
 
-                {this.state.selectedImages.map((image, idx) => <ExifOrientationImg key={idx} src={image.src}/>)}
+                {/* {this.state.selectedImages.map((image, idx) => <ExifOrientationImg key={idx} src={image.src}/>)}
                 <button
                     className={"RButton-lg"}
                     onClick={()=>{this.setState({displayContent: DISPLAY_CONTENT_SELECT_IMAGE})}}>
                     +
-                </button>
+                </button> */}
             </React.Fragment>
         )
     }
