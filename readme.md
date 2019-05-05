@@ -14,6 +14,22 @@ Above is the basic idea of AICD structure. One thing to mention is: the above is
 
 This structure is to solve the problem that the AI usage nowaday is still stuck on data level or system assistant level. There's no connection thourgh out the whole computational structure. This structure will connects "user demand", "application", "data" and "system" all together.
 
+##05/04/2019 Update
+For actions, it should have a authority level:
+- Level 1. Basic level that performs insid a Plug(app) ex: selecting a date in calendar. Change status without submitting.
+      Extend: Action in this level should still be submitted and even be modified afterward. But under the situation if top level is idle, these functions should still works.
+
+- Level 2. Client level authority. Action should get permittion from client SCL in order to happen. This can be consider as triditional client side application action. These action maniputlates data stores locally. These action is to maintain the maximum performance of the client agent while it's offline.
+
+- Level 3. USER level authority. Action that gets/modifys user data.
+
+- Level 4. Regional level. Action that gets/modifys regional data. Region could be a set of behaviors or people or anything that can be group. Group is a range that contains various of similar *TAGs. 
+
+- Level 5. Supreme level. Action that would change data that would affects entire infrustrusture.
+
+****TAG： this is an incomplete concept of how data should be store. Basically, similar to things in JAVA which everything is Object. In AICD, everything should be a tag and may contains tags. Tag defines the property of the object, this way the SCL can evaluate everything. This helps data gathering and manipulating. SCL can change the tags within a tag in order to upgrade the object. For example, a regular event can be upgrade to a dating event and be provided more information and suggestion. Later on, SCL may find there's some dangers thing happened nearby and upgrate the tag again to dangerous event and provide realtime suggestion for evacuation, etc. This is one simple example of how a tag can be evaluate and evolved by SCL's algorithm. A lot of TBD. Will be update time after time. But this should be implemented after the prove concept is finish for SCL model. A rewrite maybe necessary so I can create a base class for tag which other object/action/event can enherits it.
+
+
 Send me an email if you read this and have any thoughts: ryalianese@gmail.com
 
 ************************************

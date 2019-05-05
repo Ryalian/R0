@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, compose, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import reduxThunk from 'redux-thunk';
 import { BrowserRouter } from "react-router-dom";
@@ -13,10 +13,11 @@ import DiracSea from './engines/DiracSea';
 
 // import reducers
 import reducers from './reducers';
+
+const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
     reducers,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-    applyMiddleware(reduxThunk)
+    composeEnhancer(applyMiddleware(reduxThunk))
 );
 
 class App extends React.Component {
