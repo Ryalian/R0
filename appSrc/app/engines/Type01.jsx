@@ -83,7 +83,6 @@ class CoreEngine extends React.Component {
      */
     loadPlug(plug, queryString='', pathname=null) {
         const { loadedPlug, setLCLState, history } = this.props;
-        console.log(plug, )
         
         // TODO: support redirect if url route not valid
         history.push({
