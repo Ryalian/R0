@@ -63,6 +63,7 @@ class CoreEngine extends React.Component {
      * return {Object} plug object. If no plug found, return default plug at slot 0.
      */
     findPlug() {
+        console.log("Searching for plug");
         const selectedPlugName = matchPath(this.props.location.pathname, {
             path: '/:plug',
             exact: true,
@@ -82,11 +83,14 @@ class CoreEngine extends React.Component {
      */
     loadPlug(plug, queryString='', pathname=null) {
         const { loadedPlug, setLCLState, history } = this.props;
+        console.log(plug, )
         
+        // TODO: support redirect if url route not valid
         history.push({
-            pathname: pathname !== '/' ? pathname : `/${plug.name}`,
+            pathname: pathname !== '/' && pathname !== null ? pathname : `/${plug.name}`,
             search: queryString
         });
+
         loadedPlug(plug);
         setLCLState({ name: plug.name, initData: plug.initPlugData() })
     }
