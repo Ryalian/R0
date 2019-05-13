@@ -1,10 +1,14 @@
 import React from 'react';
 import { plugGenerator } from "../plugFactory";
 
+import RippleGrid from "./RippleGrid";
+
 class Petitgguy extends React.Component {
     render() {
         return (
-            <div> All bears goes here </div>
+            <div> 
+                <RippleGrid />
+            </div>
         )
     }
 }

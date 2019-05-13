@@ -140,7 +140,11 @@ export default class CalendarHome extends React.Component {
 
     render() {
         return (
-            <Months onSelect={this.calendarSelectDay} {...this.props} events={this.state.currentMonthEvent}/>
+            <Months
+                onSelect={this.calendarSelectDay}
+                events={this.state.currentMonthEvent}
+                {...this.props}
+                />
         )
     }
 }

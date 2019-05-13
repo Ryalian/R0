@@ -67,6 +67,14 @@ export default class CalendarEvent extends React.Component {
             this.loadATFields();
             this.loadLCL();
         }
+
+        // swap date if start date behind end date
+        if(this.state.startDate > this.state.endDate) {
+            this.setState({
+                startDate: this.state.endDate,
+                endDate: this.state.startDate
+            })
+        }
     }
 
     loadEvent() {

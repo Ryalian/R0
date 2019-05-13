@@ -42,6 +42,7 @@ class CoreEngine extends React.Component {
         let appTasks = this.props.tasksList;
 
         if(appTasks.length) {
+            // TODO: modify task through constrain
             appTasks.forEach(task => this.props.processAppTask({
                 ...task,
                 target: this.props.plug.name
